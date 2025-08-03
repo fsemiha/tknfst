@@ -16,7 +16,7 @@
     <link rel="preload" href="fonts/Gilmer Light.otf" as="font" type="font/otf" crossorigin>
     <link rel="preload" href="fonts/Gilmer Bold.otf" as="font" type="font/otf" crossorigin>
     <link rel="preload" href="fonts/conthrax-sb.otf" as="font" type="font/otf" crossorigin>
-    <link rel="stylesheet" href="style.css?v=9.6&allpanels=fixed">
+    <link rel="stylesheet" href="style.css?v=9.7&selective=true">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js" defer></script>
     <!-- Mobile Console for debugging -->
     <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
@@ -386,14 +386,23 @@
                  }
              });
              
-             // TÜM panelleri optimize et
-             const panels = document.querySelectorAll('.password-panel-outer, .main-title-panel');
-             panels.forEach(panel => {
+             // Ana menü ve isim girme panellerini geri getir
+             const mainPanel = document.querySelector('.main-title-panel');
+             if (mainPanel) {
+                 mainPanel.style.width = '98vw';
+                 mainPanel.style.maxHeight = '80vh';
+                 mainPanel.style.padding = '0';
+                 mainPanel.style.margin = '0 auto';
+             }
+             
+             // Sadece sorunlu panelleri optimize et
+             const problemPanels = document.querySelectorAll('#phishing-panel .password-panel-outer, #share-panel .password-panel-outer');
+             problemPanels.forEach(panel => {
                  if (panel) {
                      panel.style.width = '95vw';
                      panel.style.maxWidth = '500px';
-                     panel.style.minHeight = '650px';
-                     panel.style.maxHeight = '95vh';
+                     panel.style.minHeight = '600px';
+                     panel.style.maxHeight = '90vh';
                      panel.style.display = 'flex';
                      panel.style.flexDirection = 'column';
                      panel.style.justifyContent = 'flex-start';
@@ -401,9 +410,9 @@
                  }
              });
              
-             // TÜM panel içerikleri için optimizasyon
-             const allPanelContents = document.querySelectorAll('.password-panel-content');
-             allPanelContents.forEach(content => {
+             // Sadece sorunlu panel içeriklerini optimize et
+             const problemPanelContents = document.querySelectorAll('#phishing-panel .password-panel-content, #share-panel .password-panel-content');
+             problemPanelContents.forEach(content => {
                  if (content) {
                      content.style.position = 'relative';
                      content.style.top = '0';
@@ -2447,9 +2456,9 @@
         });
 
         // 🚀 VERSİYON BİLGİSİ
-        const gameVersion = "v9.6";
-        const cssVersion = "v9.6";
-        const buildDate = "2024-12-19 21:35";
+        const gameVersion = "v9.7";
+        const cssVersion = "v9.7";
+        const buildDate = "2024-12-19 21:50";
         
         console.log(`🚀 OYUN VERSİYONU: ${gameVersion}`);
         console.log(`🎨 CSS VERSİYONU: ${cssVersion}`);
@@ -2460,7 +2469,7 @@
         const cssLink = document.querySelector('link[href*="style.css"]');
         if (cssLink) {
             console.log(`💾 CSS DOSYASI: ${cssLink.href}`);
-            console.log(`⏰ CSS CACHE: ${cssLink.href.includes('v=9.6') ? '✅ GÜNCEL' : '❌ ESKİ'}`);
+            console.log(`⏰ CSS CACHE: ${cssLink.href.includes('v=9.7') ? '✅ GÜNCEL' : '❌ ESKİ'}`);
         }
         
         // Cihaz tipini algıla ve bilgi ver

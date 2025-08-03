@@ -1,8 +1,8 @@
 /* 
 ====================================
-TEKNOFEST MOBİL FİX v9.6 
-TÜM PANELLER RESPONSIVE FIX
-Build: 2024-12-19 21:35
+TEKNOFEST MOBİL FİX v9.7 
+SEÇİCİ PANEL OPTİMİZASYONU
+Build: 2024-12-19 21:50
 ====================================
 */
 @font-face {
@@ -1245,27 +1245,29 @@ body, html {
        screen and (max-device-width: 1024px),
        (hover: none) and (pointer: coarse) {
     
-    /* ANA MENÜ MOBİL OPTİMİZASYON */
+    /* ANA MENÜ MOBİL OPTİMİZASYON - DOKUNMA */
     .main-title-panel {
-        width: 95vw !important;
+        width: 98vw !important;
         height: auto !important;
-        max-height: 70vh !important;
-        padding: 10px !important;
+        max-height: 80vh !important;
+        padding: 0 !important;
+        margin: 0 auto !important;
     }
     
     .main-btn-svg {
-        max-width: 300px !important;
-        min-width: 180px !important;
-        margin: 6px auto !important;
+        max-width: 340px !important;
+        min-width: 200px !important;
+        margin: 8px auto !important;
     }
     
     .start-svg {
-        max-width: 280px !important;
-        margin-top: 12px !important;
+        max-width: 300px !important;
+        margin-top: 15px !important;
     }
     
-    /* TÜM PANELLER İÇİN MOBİL OPTİMİZASYON */
-    .password-panel-outer {
+    /* SADECE SORUNLU PANELLER İÇİN OPTİMİZASYON */
+    #phishing-panel .password-panel-outer,
+    #share-panel .password-panel-outer {
         width: 95vw !important;
         max-width: 500px !important;
         height: auto !important;
@@ -1277,8 +1279,9 @@ body, html {
         align-items: center !important;
     }
     
-    /* TÜM PANEL İÇERİKLERİ */
-    .password-panel-content {
+    /* SADECE SORUNLU PANEL İÇERİKLERİ */
+    #phishing-panel .password-panel-content,
+    #share-panel .password-panel-content {
         position: relative !important;
         top: 0 !important;
         padding: 30px 20px 40px 20px !important;
