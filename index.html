@@ -16,7 +16,7 @@
     <link rel="preload" href="fonts/Gilmer Light.otf" as="font" type="font/otf" crossorigin>
     <link rel="preload" href="fonts/Gilmer Bold.otf" as="font" type="font/otf" crossorigin>
     <link rel="preload" href="fonts/conthrax-sb.otf" as="font" type="font/otf" crossorigin>
-    <link rel="stylesheet" href="style.css?v=7.0&fix=ready">
+    <link rel="stylesheet" href="style.css?v=8.0&ultrafix=true">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js" defer></script>
     <!-- Mobile Console for debugging -->
     <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
@@ -309,38 +309,69 @@
         
         phishingButtons.forEach(button => {
             if (button) {
-                let fontSize;
-                if (isMobile) {
-                    if (window.innerWidth <= 390) {
-                        fontSize = 7; // iPhone
-                    } else if (window.innerWidth <= 480) {
-                        fontSize = 8; // Küçük Android
-                    } else {
-                        fontSize = 10; // Normal mobil
-                    }
-                } else {
-                    fontSize = 14; // PC
-                }
-                
-                // Manuel CSS ayarlama
-                button.style.setProperty('font-size', fontSize + 'px', 'important');
-                button.style.setProperty('line-height', '1.0', 'important');
-                button.style.setProperty('width', isMobile ? '75%' : '85%', 'important');
-                button.style.setProperty('padding', isMobile ? '2px' : '6px', 'important');
-                button.style.setProperty('overflow', 'hidden', 'important');
-                button.style.setProperty('word-wrap', 'break-word', 'important');
-                button.style.setProperty('text-overflow', 'ellipsis', 'important');
+                                 let fontSize;
+                 if (isMobile) {
+                     // ÇOK AGRESİF KÜÇÜLTME
+                     if (window.innerWidth <= 390) {
+                         fontSize = 5; // iPhone için çok küçük
+                     } else if (window.innerWidth <= 480) {
+                         fontSize = 6; // Küçük Android için
+                     } else {
+                         fontSize = 7; // Normal mobil için
+                     }
+                 } else {
+                     fontSize = 14; // PC
+                 }
+                 
+                 // ULTRA AGRESİF CSS ayarlama
+                 button.style.setProperty('font-size', fontSize + 'px', 'important');
+                 button.style.setProperty('line-height', '0.8', 'important');
+                 button.style.setProperty('width', isMobile ? '60%' : '85%', 'important');
+                 button.style.setProperty('padding', isMobile ? '1px' : '6px', 'important');
+                 button.style.setProperty('overflow', 'hidden', 'important');
+                 button.style.setProperty('word-wrap', 'break-word', 'important');
+                 button.style.setProperty('text-overflow', 'ellipsis', 'important');
+                 button.style.setProperty('max-height', isMobile ? '30px' : '50px', 'important');
+                 button.style.setProperty('display', '-webkit-box', 'important');
+                 button.style.setProperty('-webkit-line-clamp', '2', 'important');
+                 button.style.setProperty('-webkit-box-orient', 'vertical', 'important');
                 
                 count++;
                 console.log(`📱 MANUEL: Buton ${count} -> ${fontSize}px`);
             }
         });
         
-        if (count > 0) {
-            alert(`✅ ${count} buton manuel olarak ayarlandı!\nFont boyutu: ${fontSize}px\nEkran: ${window.innerWidth}px (${isMobile ? 'Mobil' : 'PC'})`);
-        } else {
-            alert('❌ Hiç phishing butonu bulunamadı! Henüz phishing testine gelmediyseniz önce oyunu oynayın.');
-        }
+                 if (count > 0) {
+             const usedFontSize = isMobile ? (window.innerWidth <= 390 ? 5 : (window.innerWidth <= 480 ? 6 : 7)) : 14;
+             alert(`✅ ${count} buton manuel olarak ayarlandı!\nFont boyutu: ${usedFontSize}px\nEkran: ${window.innerWidth}px (${isMobile ? 'Mobil' : 'PC'})`);
+         } else {
+             alert('❌ Hiç phishing butonu bulunamadı! Henüz phishing testine gelmediyseniz önce oyunu oynayın.');
+         }
+         
+         // BONUS: Tüm phishing butonlara acil CSS injection
+         const allPhishingDivs = document.querySelectorAll('.phishing-button div, [class*="phishing"] div');
+         allPhishingDivs.forEach(div => {
+             if (div && div.textContent && div.textContent.length > 10) {
+                 div.setAttribute('style', `
+                     font-size: ${isMobile ? '6px' : '14px'} !important;
+                     line-height: 0.8 !important;
+                     width: ${isMobile ? '60%' : '85%'} !important;
+                     max-height: 30px !important;
+                     overflow: hidden !important;
+                     padding: 1px !important;
+                     word-wrap: break-word !important;
+                     position: absolute !important;
+                     top: 50% !important;
+                     left: 50% !important;
+                     transform: translate(-50%, -50%) !important;
+                     display: -webkit-box !important;
+                     -webkit-line-clamp: 2 !important;
+                     -webkit-box-orient: vertical !important;
+                     text-overflow: ellipsis !important;
+                 `);
+                 console.log('🔥 ACIL CSS INJECTION: ', div.textContent.substring(0, 20) + '...');
+             }
+         });
     }
     
     // Global scope'a da ekle (yedek)

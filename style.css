@@ -1,4 +1,4 @@
-/* TEKNOFEST MOBİL FİX v6.0 - DEBUG BUTTON ALWAYS VISIBLE */
+/* TEKNOFEST MOBİL FİX v8.0 - ULTRA AGGRESSIVE TINY FONTS */
 @font-face {
     font-family: 'Gilmer';
     src: url('fonts/Gilmer Regular.otf') format('opentype');
@@ -1187,19 +1187,22 @@ body, html {
     max-width: 600px !important;
 }
 
-/* MOBİL AGRESİF DÜZELTME - SABİT BOYUTLAR */
+/* MOBİL ULTRA AGRESİF DÜZELTME - ZORLA KÜÇÜK */
 @media (max-width: 768px) {
     /* Phishing button yazı boyutu zorla küçültme */
     .phishing-button div {
-        font-size: 10px !important; /* Çok küçük ama okunabilir */
-        line-height: 1.0 !important;
-        width: 80% !important;
-        padding: 3px !important;
-        max-height: 50px !important;
+        font-size: 8px !important; /* Çok küçük ama okunabilir */
+        line-height: 0.9 !important;
+        width: 70% !important;
+        padding: 1px !important;
+        max-height: 40px !important;
         overflow: hidden !important;
         text-overflow: ellipsis !important;
         word-break: break-word !important;
         white-space: normal !important;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 2 !important;
+        -webkit-box-orient: vertical !important;
     }
     
     .phishing-buttons-container {
@@ -1245,11 +1248,11 @@ body, html {
 @media (max-width: 480px) {
     /* Phishing butonları zorla daha küçük yap */
     .phishing-button div {
-        font-size: 8px !important; /* Çok küçük ama hala okunabilir */
-        line-height: 0.9 !important;
-        width: 75% !important;
-        padding: 2px !important;
-        max-height: 45px !important;
+        font-size: 6px !important; /* Son derece küçük */
+        line-height: 0.8 !important;
+        width: 65% !important;
+        padding: 1px !important;
+        max-height: 35px !important;
     }
     
     .phishing-button {
