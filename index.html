@@ -16,7 +16,7 @@
     <link rel="preload" href="fonts/Gilmer Light.otf" as="font" type="font/otf" crossorigin>
     <link rel="preload" href="fonts/Gilmer Bold.otf" as="font" type="font/otf" crossorigin>
     <link rel="preload" href="fonts/conthrax-sb.otf" as="font" type="font/otf" crossorigin>
-    <link rel="stylesheet" href="style.css?v=9.2&ultrafix=true">
+    <link rel="stylesheet" href="style.css?v=9.3&debug=version">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js" defer></script>
     <!-- Mobile Console for debugging -->
     <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
@@ -445,6 +445,17 @@
              });
              
              console.log('✅ Genel mobil optimizasyonu tamamlandı!');
+         }
+         
+         // Parola panel durumunu kontrol et
+         const passwordPanel = document.querySelector('.password-panel-outer');
+         if (passwordPanel) {
+             const computedStyle = window.getComputedStyle(passwordPanel);
+             console.log(`🔐 PAROLA PANELİ DURUMU:
+                 Genişlik: ${computedStyle.width}
+                 Yükseklik: ${computedStyle.height}
+                 Max-height: ${computedStyle.maxHeight}
+                 Mobil optimize: ${isMobile ? '✅' : '❌'}`);
          }
     }
     
@@ -2373,6 +2384,23 @@
             });
         });
 
+        // 🚀 VERSİYON BİLGİSİ
+        const gameVersion = "v9.3";
+        const cssVersion = "v9.3";
+        const buildDate = "2024-12-19 19:55";
+        
+        console.log(`🚀 OYUN VERSİYONU: ${gameVersion}`);
+        console.log(`🎨 CSS VERSİYONU: ${cssVersion}`);
+        console.log(`📅 BUILD TARİHİ: ${buildDate}`);
+        console.log(`🔗 DOSYA YOLU: ${window.location.href}`);
+        
+        // CSS yüklenme durumunu kontrol et
+        const cssLink = document.querySelector('link[href*="style.css"]');
+        if (cssLink) {
+            console.log(`💾 CSS DOSYASI: ${cssLink.href}`);
+            console.log(`⏰ CSS CACHE: ${cssLink.href.includes('v=9.3') ? '✅ GÜNCEL' : '❌ ESKİ'}`);
+        }
+        
         // Cihaz tipini algıla ve bilgi ver
         const deviceInfo = {
             userAgent: navigator.userAgent,
