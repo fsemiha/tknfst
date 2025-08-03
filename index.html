@@ -16,7 +16,7 @@
     <link rel="preload" href="fonts/Gilmer Light.otf" as="font" type="font/otf" crossorigin>
     <link rel="preload" href="fonts/Gilmer Bold.otf" as="font" type="font/otf" crossorigin>
     <link rel="preload" href="fonts/conthrax-sb.otf" as="font" type="font/otf" crossorigin>
-    <link rel="stylesheet" href="style.css?v=9.3&debug=version">
+    <link rel="stylesheet" href="style.css?v=9.4&spacing=fixed">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js" defer></script>
     <!-- Mobile Console for debugging -->
     <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
@@ -399,10 +399,11 @@
              // Parola panel özel ayarları - ULTRA AGRESİF
              const passwordPanelContent = document.querySelector('.password-panel-content');
              if (passwordPanelContent) {
-                 passwordPanelContent.style.top = '70px';
-                 passwordPanelContent.style.padding = '10px 8px 40px 8px';
-                 passwordPanelContent.style.minHeight = '300px';
-                 passwordPanelContent.style.maxHeight = '60vh';
+                 passwordPanelContent.style.top = '80px';
+                 passwordPanelContent.style.padding = '20px 15px 60px 15px';
+                 passwordPanelContent.style.minHeight = '400px';
+                 passwordPanelContent.style.maxHeight = '70vh';
+                 passwordPanelContent.style.gap = '15px';
              }
              
              const passwordPanelTop = document.querySelector('.password-panel-top');
@@ -418,21 +419,21 @@
                  if (wrapper) {
                      wrapper.style.width = '92%';
                      wrapper.style.maxWidth = '300px';
-                     wrapper.style.marginBottom = '10px';
+                     wrapper.style.marginBottom = '20px';
                  }
              });
              
              // Kontrol et butonunu küçült
              const passwordCheckBtn = document.querySelector('.password-check-btn-wrapper');
              if (passwordCheckBtn) {
-                 passwordCheckBtn.style.width = '200px';
-                 passwordCheckBtn.style.height = '45px';
-                 passwordCheckBtn.style.margin = '8px auto';
+                 passwordCheckBtn.style.width = '220px';
+                 passwordCheckBtn.style.height = '50px';
+                 passwordCheckBtn.style.margin = '15px auto';
              }
              
              const passwordCheckBtnImg = document.querySelector('.password-check-btn');
              if (passwordCheckBtnImg) {
-                 passwordCheckBtnImg.style.height = '45px';
+                 passwordCheckBtnImg.style.height = '50px';
              }
              
              // Input alanlarını ayarla
@@ -2385,9 +2386,9 @@
         });
 
         // 🚀 VERSİYON BİLGİSİ
-        const gameVersion = "v9.3";
-        const cssVersion = "v9.3";
-        const buildDate = "2024-12-19 19:55";
+        const gameVersion = "v9.4";
+        const cssVersion = "v9.4";
+        const buildDate = "2024-12-19 20:00";
         
         console.log(`🚀 OYUN VERSİYONU: ${gameVersion}`);
         console.log(`🎨 CSS VERSİYONU: ${cssVersion}`);
@@ -2398,7 +2399,7 @@
         const cssLink = document.querySelector('link[href*="style.css"]');
         if (cssLink) {
             console.log(`💾 CSS DOSYASI: ${cssLink.href}`);
-            console.log(`⏰ CSS CACHE: ${cssLink.href.includes('v=9.3') ? '✅ GÜNCEL' : '❌ ESKİ'}`);
+            console.log(`⏰ CSS CACHE: ${cssLink.href.includes('v=9.4') ? '✅ GÜNCEL' : '❌ ESKİ'}`);
         }
         
         // Cihaz tipini algıla ve bilgi ver
