@@ -1,8 +1,8 @@
 /* 
 ====================================
-TEKNOFEST MOBİL FİX v9.7 
-SEÇİCİ PANEL OPTİMİZASYONU
-Build: 2024-12-19 21:50
+TEKNOFEST MOBİL FİX v9.8 
+SORUNLU PANELLER ULTRA FIX
+Build: 2024-12-19 22:00
 ====================================
 */
 @font-face {
@@ -1265,35 +1265,66 @@ body, html {
         margin-top: 15px !important;
     }
     
-    /* SADECE SORUNLU PANELLER İÇİN OPTİMİZASYON */
+    /* SADECE SORUNLU PANELLER İÇİN ULTRA FIX */
     #phishing-panel .password-panel-outer,
-    #share-panel .password-panel-outer {
-        width: 95vw !important;
-        max-width: 500px !important;
+    #share-panel .password-panel-outer,
+    #password-panel .password-panel-outer {
+        position: fixed !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        width: 92vw !important;
+        max-width: 420px !important;
         height: auto !important;
-        min-height: 600px !important;
-        max-height: 90vh !important;
+        min-height: 500px !important;
+        max-height: 85vh !important;
+        margin: 0 !important;
+        padding: 0 !important;
         display: flex !important;
         flex-direction: column !important;
-        justify-content: flex-start !important;
+        justify-content: center !important;
         align-items: center !important;
+        overflow: hidden !important;
+        border-radius: 15px !important;
     }
     
-    /* SADECE SORUNLU PANEL İÇERİKLERİ */
+    /* SADECE SORUNLU PANEL İÇERİKLERİ - ULTRA FIX */
     #phishing-panel .password-panel-content,
-    #share-panel .password-panel-content {
+    #share-panel .password-panel-content,
+    #password-panel .password-panel-content {
         position: relative !important;
         top: 0 !important;
-        padding: 30px 20px 40px 20px !important;
-        min-height: 500px !important;
-        max-height: 80vh !important;
-        gap: 25px !important;
+        padding: 20px 15px !important;
+        min-height: 450px !important;
+        max-height: 75vh !important;
+        gap: 20px !important;
         display: flex !important;
         flex-direction: column !important;
-        justify-content: flex-start !important;
+        justify-content: center !important;
         align-items: center !important;
         width: 100% !important;
         overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+    
+    /* BAŞLIK VE AÇIKLAMA - ULTRA FIX */
+    #phishing-panel .password-title,
+    #share-panel .password-title,
+    #password-panel .password-title {
+        font-size: 1.2rem !important;
+        margin: 10px 0 !important;
+        text-align: center !important;
+        width: 90% !important;
+    }
+    
+    #phishing-panel .password-desc,
+    #share-panel .password-desc,
+    #password-panel .password-desc {
+        font-size: 1rem !important;
+        margin: 0 0 15px 0 !important;
+        text-align: center !important;
+        width: 90% !important;
+        line-height: 1.3 !important;
     }
     
     /* PAROLA PANEL İÇERİK MOBİL */
@@ -1341,20 +1372,25 @@ body, html {
         font-size: 0.8rem !important;
     }
     
-    /* PAYLAŞ/SAKLA SORULARI MOBİL */
+    /* PAYLAŞ/SAKLA SORULARI MOBİL - ULTRA FIX */
     .share-question-item {
-        font-size: 13px !important;
-        padding: 12px 8px !important;
-        line-height: 1.3 !important;
-        margin-bottom: 12px !important;
-        width: 90% !important;
-        max-width: 350px !important;
-        min-height: 50px !important;
+        font-size: 14px !important;
+        padding: 15px 10px !important;
+        line-height: 1.4 !important;
+        margin-bottom: 15px !important;
+        width: 85% !important;
+        max-width: 320px !important;
+        min-height: 45px !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
         text-align: center !important;
         flex-shrink: 0 !important;
+        background: rgba(255, 255, 255, 0.1) !important;
+        border-radius: 10px !important;
+        backdrop-filter: blur(5px) !important;
+        -webkit-backdrop-filter: blur(5px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
     }
     
     /* PAYLAŞ/SAKLA BUTONLARI */
@@ -1365,26 +1401,46 @@ body, html {
         flex-shrink: 0 !important;
     }
     
-    /* PHISHING BUTONLARI CONTAINER */
+    /* PHISHING BUTONLARI CONTAINER - ULTRA FIX */
     .phishing-buttons-container {
-        gap: 15px !important;
-        padding: 20px 10px !important;
+        gap: 12px !important;
+        padding: 15px 10px !important;
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
         width: 100% !important;
+        max-height: 70vh !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
     }
     
-    /* PHISHING BUTONLARI */
+    /* PHISHING BUTONLARI - ULTRA FIX */
     .phishing-button {
-        width: 90% !important;
-        max-width: 320px !important;
-        min-height: 60px !important;
-        margin-bottom: 15px !important;
+        width: 85% !important;
+        max-width: 300px !important;
+        min-height: 50px !important;
+        margin-bottom: 12px !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
         flex-shrink: 0 !important;
+        background: rgba(255, 255, 255, 0.1) !important;
+        border-radius: 10px !important;
+        backdrop-filter: blur(5px) !important;
+        -webkit-backdrop-filter: blur(5px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    }
+    
+    /* PHISHING BUTON METİNLERİ - ULTRA FIX */
+    .phishing-button div {
+        font-size: 13px !important;
+        line-height: 1.3 !important;
+        padding: 8px !important;
+        text-align: center !important;
+        width: 90% !important;
+        max-height: none !important;
+        white-space: normal !important;
+        overflow: visible !important;
     }
 }
 
