@@ -16,7 +16,7 @@
     <link rel="preload" href="fonts/Gilmer Light.otf" as="font" type="font/otf" crossorigin>
     <link rel="preload" href="fonts/Gilmer Bold.otf" as="font" type="font/otf" crossorigin>
     <link rel="preload" href="fonts/conthrax-sb.otf" as="font" type="font/otf" crossorigin>
-    <link rel="stylesheet" href="style.css?v=9.0&responsive=full">
+    <link rel="stylesheet" href="style.css?v=9.1&password=fixed">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js" defer></script>
     <!-- Mobile Console for debugging -->
     <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
@@ -392,6 +392,30 @@
                  if (panel) {
                      panel.style.width = '95vw';
                      panel.style.maxWidth = '500px';
+                     panel.style.maxHeight = '85vh';
+                 }
+             });
+             
+             // Parola panel özel ayarları
+             const passwordPanelContent = document.querySelector('.password-panel-content');
+             if (passwordPanelContent) {
+                 passwordPanelContent.style.top = '100px';
+                 passwordPanelContent.style.padding = '20px 15px 80px 15px';
+             }
+             
+             const passwordPanelTop = document.querySelector('.password-panel-top');
+             if (passwordPanelTop) {
+                 passwordPanelTop.style.padding = '0 30px';
+                 passwordPanelTop.style.top = '20px';
+             }
+             
+             // Parola input wrapper'larını ayarla
+             const passwordInputWrappers = document.querySelectorAll('.password-input-wrapper');
+             passwordInputWrappers.forEach(wrapper => {
+                 if (wrapper) {
+                     wrapper.style.width = '85%';
+                     wrapper.style.maxWidth = '350px';
+                     wrapper.style.marginBottom = '18px';
                  }
              });
              

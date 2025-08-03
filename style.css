@@ -1,4 +1,4 @@
-/* TEKNOFEST MOBİL FİX v9.0 - KÖKLÜ MOBİL OPTİMİZASYON */
+/* TEKNOFEST MOBİL FİX v9.1 - PAROLA PANEL FİX */
 @font-face {
     font-family: 'Gilmer';
     src: url('fonts/Gilmer Regular.otf') format('opentype');
@@ -535,26 +535,55 @@ body, html {
     }
 }
 
-/* Çok küçük ekranlar için ekstra güvenlik */
+/* Çok küçük ekranlar için ekstra güvenlik (iPhone SE vb.) */
 @media (max-width: 400px) {
+    /* PAROLA PANELİ ÇOK KÜÇÜK EKRAN */
+    .password-panel-outer {
+        width: 99vw !important;
+        max-width: 380px !important;
+        height: auto !important;
+        min-height: 450px !important;
+        max-height: 95vh !important;
+    }
+    
     .password-panel-top {
-        top: 80px;
-        padding: 0 40px;
-        min-height: 45px;
+        top: 10px !important;
+        padding: 0 15px !important;
+        min-height: 45px !important;
         flex-wrap: nowrap;
     }
+    
+    .password-panel-content {
+        top: 70px !important;
+        padding: 10px 8px 50px 8px !important;
+    }
+    
+    .password-input-wrapper {
+        width: 95% !important;
+        max-width: 280px !important;
+        margin-bottom: 12px !important;
+    }
+    
+    .password-title {
+        font-size: 1rem !important;
+        margin-bottom: 4px !important;
+    }
+    
+    .password-desc {
+        font-size: 0.85rem !important;
+        margin-bottom: 10px !important;
+        padding: 0 3px !important;
+        line-height: 1.2 !important;
+    }
+    
     .svg-text {
         font-size: 0.7rem !important;
     }
-    .password-panel-content {
-        top: 85px;
-    }
+    
     #share-panel .password-panel-content, #phishing-panel .password-panel-content {
-        top: 85px;
+        top: 70px !important;
     }
-    .password-panel-outer {
-        height: 420px;
-    }
+    
     .svg-box {
         width: 25vw;
         max-width: 120px;
@@ -1220,18 +1249,48 @@ body, html {
         width: 95vw !important;
         max-width: 500px !important;
         height: auto !important;
-        min-height: 400px !important;
+        min-height: 500px !important;
+        max-height: 85vh !important;
     }
     
-    /* INPUT ALANLARI MOBİL */
+    /* PAROLA PANEL İÇERİK MOBİL */
+    .password-panel-content {
+        top: 100px !important;
+        padding: 20px 15px 80px 15px !important;
+    }
+    
+    .password-panel-top {
+        padding: 0 30px !important;
+        top: 20px !important;
+    }
+    
+    /* INPUT ALANLARI MOBİL - PAROLA EKRANI */
+    .password-input-wrapper {
+        width: 85% !important;
+        max-width: 350px !important;
+        margin-bottom: 18px !important;
+    }
+    
     .username-input-on-svg {
         font-size: 14px !important;
-        padding: 8px !important;
+        padding: 8px 12px !important;
     }
     
     .password-input {
         font-size: 14px !important;
-        padding: 6px !important;
+        padding: 8px 12px !important;
+    }
+    
+    /* PAROLA BAŞLIK VE AÇIKLAMA MOBİL */
+    .password-title {
+        font-size: 1.2rem !important;
+        margin-bottom: 8px !important;
+    }
+    
+    .password-desc {
+        font-size: 1rem !important;
+        margin-bottom: 15px !important;
+        padding: 0 10px !important;
     }
     
     /* SKOR TABLOLARI MOBİL */
@@ -1250,6 +1309,43 @@ body, html {
 
 /* TELEFON BOYUTLARI İÇİN EKSTRA OPTİMİZASYON */
 @media (max-width: 768px) {
+    /* PAROLA PANELİ TELEFON OPTİMİZASYONU */
+    .password-panel-outer {
+        width: 98vw !important;
+        max-width: 450px !important;
+        height: auto !important;
+        min-height: 480px !important;
+        max-height: 90vh !important;
+    }
+    
+    .password-panel-content {
+        top: 90px !important;
+        padding: 15px 10px 60px 10px !important;
+    }
+    
+    .password-panel-top {
+        padding: 0 20px !important;
+        top: 15px !important;
+        min-height: 50px !important;
+    }
+    
+    .password-input-wrapper {
+        width: 90% !important;
+        max-width: 320px !important;
+        margin-bottom: 15px !important;
+    }
+    
+    .password-title {
+        font-size: 1.1rem !important;
+        margin-bottom: 6px !important;
+    }
+    
+    .password-desc {
+        font-size: 0.9rem !important;
+        margin-bottom: 12px !important;
+        padding: 0 5px !important;
+    }
+    
     /* Phishing button yazı boyutu zorla küçültme */
     .phishing-button div {
         font-size: 8px !important; /* Çok küçük ama okunabilir */
