@@ -1,8 +1,8 @@
 /* 
 ====================================
-TEKNOFEST MOBİL FİX v9.4 
-PAROLA PANEL SPACING FIX
-Build: 2024-12-19 20:00
+TEKNOFEST MOBİL FİX v9.5 
+PAROLA PANEL FLEXBOX FORCE
+Build: 2024-12-19 20:05
 ====================================
 */
 @font-face {
@@ -1334,16 +1334,26 @@ body, html {
         width: 98vw !important;
         max-width: 420px !important;
         height: auto !important;
-        min-height: 500px !important;
-        max-height: 85vh !important;
+        min-height: 600px !important;
+        max-height: 90vh !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        align-items: center !important;
     }
     
     .password-panel-content {
-        top: 80px !important;
-        padding: 20px 15px 60px 15px !important;
-        min-height: 400px !important;
-        max-height: 70vh !important;
-        gap: 15px !important;
+        position: relative !important;
+        top: 0 !important;
+        padding: 30px 20px 40px 20px !important;
+        min-height: 500px !important;
+        max-height: 80vh !important;
+        gap: 25px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        align-items: center !important;
+        width: 100% !important;
     }
     
     .password-panel-top {
@@ -1353,32 +1363,37 @@ body, html {
     }
     
     .password-input-wrapper {
-        width: 92% !important;
-        max-width: 300px !important;
-        margin-bottom: 20px !important;
+        width: 90% !important;
+        max-width: 320px !important;
+        margin-bottom: 30px !important;
+        flex-shrink: 0 !important;
     }
     
     .password-title {
-        font-size: 1.1rem !important;
-        margin-bottom: 12px !important;
+        font-size: 1.2rem !important;
+        margin-bottom: 20px !important;
+        flex-shrink: 0 !important;
     }
     
     .password-desc {
-        font-size: 0.9rem !important;
-        margin-bottom: 20px !important;
-        padding: 0 5px !important;
-        line-height: 1.3 !important;
+        font-size: 1rem !important;
+        margin-bottom: 30px !important;
+        padding: 0 10px !important;
+        line-height: 1.4 !important;
+        flex-shrink: 0 !important;
+        text-align: center !important;
     }
     
     /* KONTROL ET BUTONU KÜÇÜLTME */
     .password-check-btn-wrapper {
-        width: 220px !important;
-        height: 50px !important;
-        margin: 15px auto !important;
+        width: 240px !important;
+        height: 55px !important;
+        margin: 25px auto !important;
+        flex-shrink: 0 !important;
     }
     
     .password-check-btn {
-        height: 50px !important;
+        height: 55px !important;
     }
     
     /* Phishing button yazı boyutu zorla küçültme */
