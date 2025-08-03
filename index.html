@@ -16,7 +16,7 @@
     <link rel="preload" href="fonts/Gilmer Light.otf" as="font" type="font/otf" crossorigin>
     <link rel="preload" href="fonts/Gilmer Bold.otf" as="font" type="font/otf" crossorigin>
     <link rel="preload" href="fonts/conthrax-sb.otf" as="font" type="font/otf" crossorigin>
-    <link rel="stylesheet" href="style.css?v=6.0&debug=true">
+    <link rel="stylesheet" href="style.css?v=7.0&fix=ready">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js" defer></script>
     <!-- Mobile Console for debugging -->
     <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
@@ -263,7 +263,8 @@
             <img src="assets/Asset 6.svg" alt="Skor Tablosu" class="scoreboard-img" loading="lazy">
         </div>
         
-        <!-- MOBİL DEBUG BUTONU (Her zaman görünür) -->
+        <!-- MOBİL DEBUG BUTONU (Her zaman görünür) 
+             Phishing testinde yazılar taşıyorsa bu butona tıklayın! -->
         <div id="mobile-debug-btn" style="
             position: fixed !important;
             bottom: 20px !important;
@@ -282,20 +283,69 @@
             z-index: 99999 !important;
             border: 3px solid white !important;
             box-shadow: 0 0 20px rgba(255, 0, 0, 0.7) !important;
-        " onclick="
-            console.log('🔧 FİX butonu tıklandı!'); 
-            if(typeof adjustPhishingButtonFonts === 'function') { 
-                adjustPhishingButtonFonts(); 
-                alert('✅ Font boyutları yeniden ayarlandı!'); 
-            } else { 
-                alert('❌ adjustPhishingButtonFonts fonksiyonu bulunamadı!'); 
-            }
-        ">
+                 " onclick="try { mobileDebugFix(); } catch(e) { alert('❌ Hata: ' + e.message); console.error(e); }">
             FİX
         </div>
     </div>
 
     <script>
+    // GLOBAL MOBİL DEBUG FONKSİYONU
+    function mobileDebugFix() {
+        console.log('🔧 FİX butonu tıklandı!');
+        
+        // Önce adjustPhishingButtonFonts fonksiyonunu dene
+        if (typeof adjustPhishingButtonFonts === 'function') {
+            adjustPhishingButtonFonts();
+            alert('✅ Font boyutları ayarlandı (adjustPhishingButtonFonts)!');
+            return;
+        }
+        
+        // Fonksiyon yoksa manuel ayarlama yap
+        console.log('⚠️ adjustPhishingButtonFonts yok, manuel ayarlama yapılıyor...');
+        
+        const phishingButtons = document.querySelectorAll('.phishing-button div');
+        const isMobile = window.innerWidth <= 768;
+        let count = 0;
+        
+        phishingButtons.forEach(button => {
+            if (button) {
+                let fontSize;
+                if (isMobile) {
+                    if (window.innerWidth <= 390) {
+                        fontSize = 7; // iPhone
+                    } else if (window.innerWidth <= 480) {
+                        fontSize = 8; // Küçük Android
+                    } else {
+                        fontSize = 10; // Normal mobil
+                    }
+                } else {
+                    fontSize = 14; // PC
+                }
+                
+                // Manuel CSS ayarlama
+                button.style.setProperty('font-size', fontSize + 'px', 'important');
+                button.style.setProperty('line-height', '1.0', 'important');
+                button.style.setProperty('width', isMobile ? '75%' : '85%', 'important');
+                button.style.setProperty('padding', isMobile ? '2px' : '6px', 'important');
+                button.style.setProperty('overflow', 'hidden', 'important');
+                button.style.setProperty('word-wrap', 'break-word', 'important');
+                button.style.setProperty('text-overflow', 'ellipsis', 'important');
+                
+                count++;
+                console.log(`📱 MANUEL: Buton ${count} -> ${fontSize}px`);
+            }
+        });
+        
+        if (count > 0) {
+            alert(`✅ ${count} buton manuel olarak ayarlandı!\nFont boyutu: ${fontSize}px\nEkran: ${window.innerWidth}px (${isMobile ? 'Mobil' : 'PC'})`);
+        } else {
+            alert('❌ Hiç phishing butonu bulunamadı! Henüz phishing testine gelmediyseniz önce oyunu oynayın.');
+        }
+    }
+    
+    // Global scope'a da ekle (yedek)
+    window.mobileDebugFix = mobileDebugFix;
+
     // Firebase Configuration - teknofest projesi
     const firebaseConfig = {
         apiKey: "AIzaSyB3ofVngr1rY6Zr2bTSE3PRFT1z104nMXo",
@@ -2332,6 +2382,13 @@
                     console.log("✅ Debug butonu hazır - Görünüyor mu?", debugBtn.style.display);
                 } else {
                     console.error("❌ Debug butonu bulunamadı!");
+                }
+                
+                // Global debug fonksiyonunu test et
+                if (typeof mobileDebugFix === 'function') {
+                    console.log("✅ mobileDebugFix fonksiyonu hazır!");
+                } else {
+                    console.error("❌ mobileDebugFix fonksiyonu yok!");
                 }
             }, 1000);
         }, 800); // 0.8 saniye bekle
