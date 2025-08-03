@@ -16,7 +16,7 @@
     <link rel="preload" href="fonts/Gilmer Light.otf" as="font" type="font/otf" crossorigin>
     <link rel="preload" href="fonts/Gilmer Bold.otf" as="font" type="font/otf" crossorigin>
     <link rel="preload" href="fonts/conthrax-sb.otf" as="font" type="font/otf" crossorigin>
-    <link rel="stylesheet" href="style.css?v=8.0&ultrafix=true">
+    <link rel="stylesheet" href="style.css?v=9.0&responsive=full">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js" defer></script>
     <!-- Mobile Console for debugging -->
     <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
@@ -372,6 +372,40 @@
                  console.log('🔥 ACIL CSS INJECTION: ', div.textContent.substring(0, 20) + '...');
              }
          });
+         
+         // GENEL MOBİL OPTİMİZASYON (Tüm oyun için)
+         if (isMobile) {
+             console.log('🎮 Genel mobil optimizasyonu uygulanıyor...');
+             
+             // Ana menü butonlarını küçült
+             const mainButtons = document.querySelectorAll('.main-btn-svg, .start-svg');
+             mainButtons.forEach(btn => {
+                 if (btn) {
+                     btn.style.maxWidth = '280px';
+                     btn.style.margin = '6px auto';
+                 }
+             });
+             
+             // Panelleri küçült
+             const panels = document.querySelectorAll('.password-panel-outer, .main-title-panel');
+             panels.forEach(panel => {
+                 if (panel) {
+                     panel.style.width = '95vw';
+                     panel.style.maxWidth = '500px';
+                 }
+             });
+             
+             // Input alanlarını ayarla
+             const inputs = document.querySelectorAll('.username-input-on-svg, .password-input');
+             inputs.forEach(input => {
+                 if (input) {
+                     input.style.fontSize = '14px';
+                     input.style.padding = '8px';
+                 }
+             });
+             
+             console.log('✅ Genel mobil optimizasyonu tamamlandı!');
+         }
     }
     
     // Global scope'a da ekle (yedek)
@@ -2299,21 +2333,61 @@
             });
         });
 
-        // Performance optimization: Reduce Firebase polling on mobile
-        if (window.innerWidth < 768 && isFirebaseEnabled) {
-            console.log("📱 Mobil cihaz algılandı - Firebase optimizasyonu aktif");
+        // Cihaz tipini algıla ve bilgi ver
+        const deviceInfo = {
+            userAgent: navigator.userAgent,
+            screenWidth: window.innerWidth,
+            screenHeight: window.innerHeight,
+            touchSupport: 'ontouchstart' in window,
+            maxTouchPoints: navigator.maxTouchPoints || 0,
+            platform: navigator.platform
+        };
+        
+        console.log("📱 CİHAZ BİLGİSİ:", deviceInfo);
+        
+        // Gelişmiş mobil algılama sonucu
+        if (typeof isMobileDevice === 'function') {
+            const isMobile = isMobileDevice();
+            console.log(`🎯 CİHAZ TİPİ: ${isMobile ? '📱 MOBİL' : '💻 PC'}`);
         }
 
-        // Debug butonu her zaman aktif
+        // Performance optimization: Reduce Firebase polling on mobile
+        if (window.innerWidth < 768 && isFirebaseEnabled) {
+            console.log("📡 Firebase mobil optimizasyonu aktif");
+        }
+
+        // Debug butonu aktif
         const debugBtn = document.getElementById('mobile-debug-btn');
         if (debugBtn) {
             console.log("🔧 Debug butonu aktif - Sağ alttaki kırmızı FİX butonuna tıklayın");
         }
 
+        // GELİŞMİŞ MOBİL ALGILAMA
+        function isMobileDevice() {
+            // Çoklu kontrol sistemi
+            const userAgent = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            const touchSupport = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+            const screenWidth = window.innerWidth <= 1024; // Tablet dahil
+            const aspectRatio = window.innerHeight > window.innerWidth; // Portrait mode
+            
+            // En az 2 kriterin sağlanması
+            const mobileChecks = [userAgent, touchSupport, screenWidth, aspectRatio].filter(Boolean).length;
+            const isMobile = mobileChecks >= 2;
+            
+            console.log(`📱 MOBİL ALGILAMA:
+                User Agent: ${userAgent}
+                Touch Support: ${touchSupport}
+                Screen Width ≤1024: ${screenWidth} (${window.innerWidth}px)
+                Portrait Mode: ${aspectRatio}
+                SONUÇ: ${isMobile ? 'MOBİL' : 'PC'} (${mobileChecks}/4 kriter)`);
+                
+            return isMobile;
+        }
+
         // ULTRA AGRESİF mobil font ayarlama
         function adjustPhishingButtonFonts() {
             const phishingButtons = document.querySelectorAll('.phishing-button div');
-            const isMobile = window.innerWidth <= 768;
+            const isMobile = isMobileDevice();
             
             phishingButtons.forEach(button => {
                 const container = button.closest('.phishing-button');
@@ -2349,11 +2423,29 @@
             });
         }
 
-        // Apply font adjustment on window resize
+        // Apply font adjustment on window resize + mobil optimizasyon
         let resizeTimeout;
         window.addEventListener('resize', function() {
             clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(adjustPhishingButtonFonts, 250);
+            resizeTimeout = setTimeout(() => {
+                console.log("📐 Ekran boyutu değişti - Yeniden optimizasyon...");
+                if (typeof adjustPhishingButtonFonts === 'function') {
+                    adjustPhishingButtonFonts();
+                }
+                if (typeof mobileDebugFix === 'function') {
+                    mobileDebugFix();
+                }
+            }, 250);
+        });
+        
+        // Orientation change için de dinle
+        window.addEventListener('orientationchange', function() {
+            setTimeout(() => {
+                console.log("🔄 Ekran rotasyonu - Optimizasyon yenileniyor...");
+                if (typeof mobileDebugFix === 'function') {
+                    mobileDebugFix();
+                }
+            }, 500);
         });
 
         // Apply font adjustment when phishing panel becomes visible
@@ -2400,14 +2492,21 @@
                 }, 500);
             }
             
-            // Sayfa yüklendiğinde font boyutlarını ayarla
+            // Sayfa yüklendiğinde mobil optimizasyonu
             setTimeout(() => {
-                if (typeof adjustPhishingButtonFonts === 'function') {
-                    adjustPhishingButtonFonts();
-                    console.log("🚀 Sayfa yüklendi - Font boyutları otomatik ayarlandı");
+                console.log("🚀 Sayfa yüklendi - Mobil optimizasyonu başlıyor...");
+                
+                // Mobil algılama ve genel optimizasyon
+                if (typeof mobileDebugFix === 'function') {
+                    mobileDebugFix(); // Bu genel optimizasyonu da yapıyor
                 }
                 
-                // Debug butonu varlığını kontrol et
+                // Phishing font ayarlama
+                if (typeof adjustPhishingButtonFonts === 'function') {
+                    adjustPhishingButtonFonts();
+                }
+                
+                // Debug butonu kontrol
                 const debugBtn = document.getElementById('mobile-debug-btn');
                 if (debugBtn) {
                     console.log("✅ Debug butonu hazır - Görünüyor mu?", debugBtn.style.display);
@@ -2415,12 +2514,14 @@
                     console.error("❌ Debug butonu bulunamadı!");
                 }
                 
-                // Global debug fonksiyonunu test et
+                // Fonksiyon kontrolü
                 if (typeof mobileDebugFix === 'function') {
                     console.log("✅ mobileDebugFix fonksiyonu hazır!");
                 } else {
                     console.error("❌ mobileDebugFix fonksiyonu yok!");
                 }
+                
+                console.log("✅ Sayfa yükleme optimizasyonu tamamlandı!");
             }, 1000);
         }, 800); // 0.8 saniye bekle
     });
