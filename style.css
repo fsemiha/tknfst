@@ -1,4 +1,4 @@
-/* TEKNOFEST MOBİL FİX v9.1 - PAROLA PANEL FİX */
+/* TEKNOFEST MOBİL FİX v9.2 - PAROLA PANEL ULTRA AGRESİF */
 @font-face {
     font-family: 'Gilmer';
     src: url('fonts/Gilmer Regular.otf') format('opentype');
@@ -537,43 +537,56 @@ body, html {
 
 /* Çok küçük ekranlar için ekstra güvenlik (iPhone SE vb.) */
 @media (max-width: 400px) {
-    /* PAROLA PANELİ ÇOK KÜÇÜK EKRAN */
+    /* PAROLA PANELİ ÇOK KÜÇÜK EKRAN - ULTRA COMPACT */
     .password-panel-outer {
         width: 99vw !important;
-        max-width: 380px !important;
+        max-width: 360px !important;
         height: auto !important;
-        min-height: 450px !important;
-        max-height: 95vh !important;
+        min-height: 380px !important;
+        max-height: 70vh !important;
     }
     
     .password-panel-top {
-        top: 10px !important;
-        padding: 0 15px !important;
-        min-height: 45px !important;
+        top: 5px !important;
+        padding: 0 10px !important;
+        min-height: 40px !important;
         flex-wrap: nowrap;
     }
     
     .password-panel-content {
-        top: 70px !important;
-        padding: 10px 8px 50px 8px !important;
+        top: 55px !important;
+        padding: 8px 5px 30px 5px !important;
+        min-height: 250px !important;
+        max-height: 50vh !important;
     }
     
     .password-input-wrapper {
         width: 95% !important;
-        max-width: 280px !important;
-        margin-bottom: 12px !important;
+        max-width: 260px !important;
+        margin-bottom: 8px !important;
     }
     
     .password-title {
-        font-size: 1rem !important;
-        margin-bottom: 4px !important;
+        font-size: 0.9rem !important;
+        margin-bottom: 3px !important;
     }
     
     .password-desc {
-        font-size: 0.85rem !important;
-        margin-bottom: 10px !important;
-        padding: 0 3px !important;
-        line-height: 1.2 !important;
+        font-size: 0.8rem !important;
+        margin-bottom: 6px !important;
+        padding: 0 2px !important;
+        line-height: 1.1 !important;
+    }
+    
+    /* KONTROL ET BUTONU ÇOK KÜÇÜK EKRAN */
+    .password-check-btn-wrapper {
+        width: 180px !important;
+        height: 40px !important;
+        margin: 6px auto !important;
+    }
+    
+    .password-check-btn {
+        height: 40px !important;
     }
     
     .svg-text {
@@ -1309,41 +1322,55 @@ body, html {
 
 /* TELEFON BOYUTLARI İÇİN EKSTRA OPTİMİZASYON */
 @media (max-width: 768px) {
-    /* PAROLA PANELİ TELEFON OPTİMİZASYONU */
+    /* PAROLA PANELİ TELEFON OPTİMİZASYONU - ULTRA AGRESİF */
     .password-panel-outer {
         width: 98vw !important;
-        max-width: 450px !important;
+        max-width: 420px !important;
         height: auto !important;
-        min-height: 480px !important;
-        max-height: 90vh !important;
+        min-height: 400px !important;
+        max-height: 75vh !important;
     }
     
     .password-panel-content {
-        top: 90px !important;
-        padding: 15px 10px 60px 10px !important;
+        top: 70px !important;
+        padding: 10px 8px 40px 8px !important;
+        min-height: 300px !important;
+        max-height: 60vh !important;
     }
     
     .password-panel-top {
-        padding: 0 20px !important;
-        top: 15px !important;
-        min-height: 50px !important;
+        padding: 0 15px !important;
+        top: 10px !important;
+        min-height: 45px !important;
     }
     
     .password-input-wrapper {
-        width: 90% !important;
-        max-width: 320px !important;
-        margin-bottom: 15px !important;
+        width: 92% !important;
+        max-width: 300px !important;
+        margin-bottom: 10px !important;
     }
     
     .password-title {
-        font-size: 1.1rem !important;
-        margin-bottom: 6px !important;
+        font-size: 1rem !important;
+        margin-bottom: 4px !important;
     }
     
     .password-desc {
-        font-size: 0.9rem !important;
-        margin-bottom: 12px !important;
-        padding: 0 5px !important;
+        font-size: 0.85rem !important;
+        margin-bottom: 8px !important;
+        padding: 0 3px !important;
+        line-height: 1.1 !important;
+    }
+    
+    /* KONTROL ET BUTONU KÜÇÜLTME */
+    .password-check-btn-wrapper {
+        width: 200px !important;
+        height: 45px !important;
+        margin: 8px auto !important;
+    }
+    
+    .password-check-btn {
+        height: 45px !important;
     }
     
     /* Phishing button yazı boyutu zorla küçültme */

@@ -16,7 +16,7 @@
     <link rel="preload" href="fonts/Gilmer Light.otf" as="font" type="font/otf" crossorigin>
     <link rel="preload" href="fonts/Gilmer Bold.otf" as="font" type="font/otf" crossorigin>
     <link rel="preload" href="fonts/conthrax-sb.otf" as="font" type="font/otf" crossorigin>
-    <link rel="stylesheet" href="style.css?v=9.1&password=fixed">
+    <link rel="stylesheet" href="style.css?v=9.2&ultrafix=true">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js" defer></script>
     <!-- Mobile Console for debugging -->
     <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
@@ -396,28 +396,44 @@
                  }
              });
              
-             // Parola panel özel ayarları
+             // Parola panel özel ayarları - ULTRA AGRESİF
              const passwordPanelContent = document.querySelector('.password-panel-content');
              if (passwordPanelContent) {
-                 passwordPanelContent.style.top = '100px';
-                 passwordPanelContent.style.padding = '20px 15px 80px 15px';
+                 passwordPanelContent.style.top = '70px';
+                 passwordPanelContent.style.padding = '10px 8px 40px 8px';
+                 passwordPanelContent.style.minHeight = '300px';
+                 passwordPanelContent.style.maxHeight = '60vh';
              }
              
              const passwordPanelTop = document.querySelector('.password-panel-top');
              if (passwordPanelTop) {
-                 passwordPanelTop.style.padding = '0 30px';
-                 passwordPanelTop.style.top = '20px';
+                 passwordPanelTop.style.padding = '0 15px';
+                 passwordPanelTop.style.top = '10px';
+                 passwordPanelTop.style.minHeight = '45px';
              }
              
              // Parola input wrapper'larını ayarla
              const passwordInputWrappers = document.querySelectorAll('.password-input-wrapper');
              passwordInputWrappers.forEach(wrapper => {
                  if (wrapper) {
-                     wrapper.style.width = '85%';
-                     wrapper.style.maxWidth = '350px';
-                     wrapper.style.marginBottom = '18px';
+                     wrapper.style.width = '92%';
+                     wrapper.style.maxWidth = '300px';
+                     wrapper.style.marginBottom = '10px';
                  }
              });
+             
+             // Kontrol et butonunu küçült
+             const passwordCheckBtn = document.querySelector('.password-check-btn-wrapper');
+             if (passwordCheckBtn) {
+                 passwordCheckBtn.style.width = '200px';
+                 passwordCheckBtn.style.height = '45px';
+                 passwordCheckBtn.style.margin = '8px auto';
+             }
+             
+             const passwordCheckBtnImg = document.querySelector('.password-check-btn');
+             if (passwordCheckBtnImg) {
+                 passwordCheckBtnImg.style.height = '45px';
+             }
              
              // Input alanlarını ayarla
              const inputs = document.querySelectorAll('.username-input-on-svg, .password-input');
