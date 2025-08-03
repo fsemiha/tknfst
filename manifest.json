@@ -1,0 +1,22 @@
+{
+  "name": "Siber Macera - Teknofest",
+  "short_name": "Siber Macera",
+  "description": "Teknofest Siber Güvenlik Eğitim Oyunu",
+  "start_url": "./index.html",
+  "display": "fullscreen",
+  "orientation": "portrait",
+  "theme_color": "#0a1428",
+  "background_color": "#0a1428",
+  "icons": [
+    {
+      "src": "assets/Asset 5.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "games"],
+  "lang": "tr",
+  "scope": "./",
+  "prefer_related_applications": false
+} 
