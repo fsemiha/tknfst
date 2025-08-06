@@ -1,8 +1,8 @@
 /* 
 ====================================
-TEKNOFEST MOBİL FİX v9.8 
-SORUNLU PANELLER ULTRA FIX
-Build: 2024-12-19 22:00
+TEKNOFEST MOBİL FİX v9.9 
+MİNİMAL FİX - SADECE PHİSHİNG
+Build: 2024-12-19 22:05
 ====================================
 */
 @font-face {
@@ -1444,112 +1444,15 @@ body, html {
     }
 }
 
-/* TELEFON BOYUTLARI İÇİN EKSTRA OPTİMİZASYON */
+/* TELEFON BOYUTLARI İÇİN MİNİMAL OPTİMİZASYON */
 @media (max-width: 768px) {
-    /* TÜM PANELLER TELEFON OPTİMİZASYONU */
-    .password-panel-outer {
-        width: 98vw !important;
-        max-width: 420px !important;
-        height: auto !important;
-        min-height: 650px !important;
-        max-height: 95vh !important;
-        display: flex !important;
-        flex-direction: column !important;
-        justify-content: flex-start !important;
-        align-items: center !important;
-    }
-    
-    .password-panel-content {
-        position: relative !important;
-        top: 0 !important;
-        padding: 25px 15px 50px 15px !important;
-        min-height: 550px !important;
-        max-height: 85vh !important;
-        gap: 20px !important;
-        display: flex !important;
-        flex-direction: column !important;
-        justify-content: flex-start !important;
-        align-items: center !important;
-        width: 100% !important;
-        overflow-y: auto !important;
-    }
-    
-    .password-panel-top {
-        padding: 0 15px !important;
-        top: 10px !important;
-        min-height: 45px !important;
-    }
-    
-    .password-input-wrapper {
-        width: 90% !important;
-        max-width: 320px !important;
-        margin-bottom: 30px !important;
-        flex-shrink: 0 !important;
-    }
-    
-    .password-title {
-        font-size: 1.2rem !important;
-        margin-bottom: 20px !important;
-        flex-shrink: 0 !important;
-    }
-    
-    .password-desc {
-        font-size: 1rem !important;
-        margin-bottom: 30px !important;
-        padding: 0 10px !important;
-        line-height: 1.4 !important;
-        flex-shrink: 0 !important;
-        text-align: center !important;
-    }
-    
-    /* KONTROL ET BUTONU KÜÇÜLTME */
-    .password-check-btn-wrapper {
-        width: 240px !important;
-        height: 55px !important;
-        margin: 25px auto !important;
-        flex-shrink: 0 !important;
-    }
-    
-    .password-check-btn {
-        height: 55px !important;
-    }
-    
-    /* PAYLAŞ/SAKLA TELEFON OPTİMİZASYONU */
-    .share-question-item {
-        font-size: 12px !important;
-        padding: 10px 6px !important;
-        line-height: 1.2 !important;
-        margin-bottom: 10px !important;
-        width: 92% !important;
-        max-width: 320px !important;
-        min-height: 45px !important;
-    }
-    
-    .share-buttons {
-        gap: 12px !important;
-        margin: 15px 0 !important;
-    }
-    
-    /* PHISHING TELEFON OPTİMİZASYONU */
-    .phishing-buttons-container {
-        gap: 12px !important;
-        padding: 15px 8px !important;
-    }
-    
-    .phishing-button {
-        width: 92% !important;
-        max-width: 300px !important;
-        min-height: 55px !important;
-        margin-bottom: 12px !important;
-    }
-    
-    /* Phishing button yazı boyutu zorla küçültme */
+    /* SADECE PHISHING BUTONLARI İÇİN FİX */
     .phishing-button div {
-        font-size: 8px !important; /* Çok küçük ama okunabilir */
-        line-height: 0.9 !important;
-        width: 70% !important;
-        padding: 1px !important;
-        max-height: 40px !important;
+        font-size: 9px !important;
+        line-height: 1.1 !important;
+        width: 75% !important;
+        padding: 2px !important;
+        max-height: 45px !important;
         overflow: hidden !important;
         text-overflow: ellipsis !important;
         word-break: break-word !important;
@@ -1557,35 +1460,6 @@ body, html {
         display: -webkit-box !important;
         -webkit-line-clamp: 2 !important;
         -webkit-box-orient: vertical !important;
-    }
-    
-    .phishing-buttons-container {
-        gap: 15px !important;
-        margin-top: 15px !important;
-        padding: 0 10px !important;
-    }
-    
-    .phishing-button {
-        min-height: 80px !important;
-        margin-bottom: 8px !important;
-    }
-    
-    .phishing-button img {
-        min-height: 80px !important;
-        width: 100% !important;
-    }
-    
-    /* Paylaş/Sakla question items mobil düzenlemesi */
-    .share-question-item {
-        font-size: 12px !important;
-        padding: 8px !important;
-        line-height: 1.1 !important;
-        margin-bottom: 8px !important;
-    }
-    
-    .share-questions-container {
-        max-height: 350px !important;
-        padding: 8px !important;
     }
 }
 
@@ -1603,65 +1477,19 @@ body, html {
 /* TABLET BOYUTLARI */
 @media (min-width: 481px) and (max-width: 768px) {
     .phishing-button div {
-        font-size: 12px !important; /* Tablet için biraz daha büyük */
-        width: 85% !important;
-        padding: 4px !important;
+        font-size: 11px !important;
+        width: 80% !important;
+        padding: 3px !important;
     }
 }
 
-/* ÇOK KÜÇÜK EKRANLAR - ULTRA AGRESİF */
+/* KÜÇÜK EKRANLAR İÇİN EK OPTİMİZASYON */
 @media (max-width: 480px) {
-    /* Phishing butonları zorla daha küçük yap */
     .phishing-button div {
-        font-size: 6px !important; /* Son derece küçük */
-        line-height: 0.8 !important;
-        width: 65% !important;
-        padding: 1px !important;
-        max-height: 35px !important;
-    }
-    
-    .phishing-button {
-        min-height: 85px !important;
-    }
-    
-    .phishing-button img {
-        min-height: 85px !important;
-    }
-    
-    .phishing-buttons-container {
-        gap: 12px !important;
-        padding: 0 5px !important;
-        margin-top: 10px !important;
-    }
-    
-    /* Küçük ekranlarda share questions optimizasyonu */
-    .share-question-item {
-        font-size: 10px !important;
-        padding: 6px !important;
+        font-size: 8px !important;
         line-height: 1.0 !important;
-    }
-}
-
-/* ACİL DURUM - 390px altı iPhone */
-@media (max-width: 390px) {
-    .phishing-button div {
-        font-size: 7px !important; /* Son çare */
-        line-height: 0.8 !important;
         width: 70% !important;
         padding: 1px !important;
-        max-height: 40px !important;
-        overflow: hidden !important;
-        display: -webkit-box !important;
-        -webkit-line-clamp: 2 !important;
-        -webkit-box-orient: vertical !important;
-    }
-    
-    .phishing-button {
-        min-height: 90px !important;
-    }
-    
-    .phishing-button img {
-        min-height: 90px !important;
     }
 }
 
