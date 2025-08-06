@@ -1,8 +1,8 @@
 /* 
 ====================================
-TEKNOFEST MOBİL FİX v9.9 
-MİNİMAL FİX - SADECE PHİSHİNG
-Build: 2024-12-19 22:05
+TEKNOFEST MOBİL FİX v10.0 
+KAPSAMLI FİX - TÜM PANELLER
+Build: 2024-12-19 22:15
 ====================================
 */
 @font-face {
@@ -1444,15 +1444,110 @@ body, html {
     }
 }
 
-/* TELEFON BOYUTLARI İÇİN MİNİMAL OPTİMİZASYON */
+/* TELEFON BOYUTLARI İÇİN KAPSAMLI FİX */
 @media (max-width: 768px) {
-    /* SADECE PHISHING BUTONLARI İÇİN FİX */
+    
+    /* PAROLA GÜCÜ PANELİ - MOBİL FİX */
+    .password-panel-outer {
+        width: 95vw !important;
+        max-width: 420px !important;
+        height: auto !important;
+        min-height: 500px !important;
+        max-height: 85vh !important;
+        position: fixed !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+    
+    .password-panel-content {
+        padding: 15px 10px !important;
+        gap: 15px !important;
+        min-height: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+    }
+    
+    .password-title {
+        font-size: 1.1rem !important;
+        margin: 10px 0 !important;
+        text-align: center !important;
+    }
+    
+    .password-desc {
+        font-size: 0.9rem !important;
+        margin: 5px 0 15px 0 !important;
+        padding: 0 5px !important;
+        line-height: 1.3 !important;
+        text-align: center !important;
+    }
+    
+    .password-input-wrapper {
+        width: 90% !important;
+        max-width: 350px !important;
+        margin: 10px 0 !important;
+    }
+    
+    .password-check-btn-wrapper {
+        width: 200px !important;
+        height: 50px !important;
+        margin: 15px 0 !important;
+    }
+    
+    /* PAYLAŞ/SAKLA PANELİ - MOBİL FİX */
+    .share-question-item {
+        font-size: 11px !important;
+        padding: 8px 6px !important;
+        line-height: 1.2 !important;
+        margin-bottom: 8px !important;
+        width: 88% !important;
+        max-width: 300px !important;
+        min-height: 40px !important;
+        text-align: center !important;
+        word-wrap: break-word !important;
+        overflow: hidden !important;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 3 !important;
+        -webkit-box-orient: vertical !important;
+    }
+    
+    .share-buttons {
+        gap: 15px !important;
+        margin: 20px 0 !important;
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+    }
+    
+    /* PHISHING BUTONLARI - MOBİL FİX */
+    .phishing-buttons-container {
+        gap: 8px !important;
+        padding: 10px 5px !important;
+        max-height: 60vh !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+    
+    .phishing-button {
+        width: 90% !important;
+        max-width: 320px !important;
+        min-height: 50px !important;
+        margin-bottom: 8px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
     .phishing-button div {
-        font-size: 9px !important;
-        line-height: 1.1 !important;
-        width: 75% !important;
+        font-size: 8px !important;
+        line-height: 1.0 !important;
+        width: 85% !important;
         padding: 2px !important;
-        max-height: 45px !important;
+        max-height: 35px !important;
         overflow: hidden !important;
         text-overflow: ellipsis !important;
         word-break: break-word !important;
@@ -1460,6 +1555,11 @@ body, html {
         display: -webkit-box !important;
         -webkit-line-clamp: 2 !important;
         -webkit-box-orient: vertical !important;
+        text-align: center !important;
+        position: absolute !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
     }
 }
 
