@@ -1,8 +1,8 @@
 /* 
 ====================================
-TEKNOFEST MOBİL FİX v10.0 
-KAPSAMLI FİX - TÜM PANELLER
-Build: 2024-12-19 22:15
+TEKNOFEST MOBİL FİX v10.1 
+BÜYÜK PANEL FİX - YAZILARİ İÇİNE ALACAK
+Build: 2024-12-19 22:20
 ====================================
 */
 @font-face {
@@ -1447,13 +1447,13 @@ body, html {
 /* TELEFON BOYUTLARI İÇİN KAPSAMLI FİX */
 @media (max-width: 768px) {
     
-    /* PAROLA GÜCÜ PANELİ - MOBİL FİX */
+    /* PAROLA GÜCÜ PANELİ - BÜYÜK MOBİL FİX */
     .password-panel-outer {
-        width: 95vw !important;
-        max-width: 420px !important;
+        width: 98vw !important;
+        max-width: 500px !important;
         height: auto !important;
-        min-height: 500px !important;
-        max-height: 85vh !important;
+        min-height: 700px !important;
+        max-height: 95vh !important;
         position: fixed !important;
         top: 50% !important;
         left: 50% !important;
@@ -1463,9 +1463,9 @@ body, html {
     }
     
     .password-panel-content {
-        padding: 15px 10px !important;
-        gap: 15px !important;
-        min-height: auto !important;
+        padding: 25px 15px !important;
+        gap: 25px !important;
+        min-height: 600px !important;
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
@@ -1473,29 +1473,35 @@ body, html {
     }
     
     .password-title {
-        font-size: 1.1rem !important;
-        margin: 10px 0 !important;
+        font-size: 1.3rem !important;
+        margin: 15px 0 !important;
         text-align: center !important;
+        line-height: 1.4 !important;
     }
     
     .password-desc {
-        font-size: 0.9rem !important;
-        margin: 5px 0 15px 0 !important;
-        padding: 0 5px !important;
-        line-height: 1.3 !important;
+        font-size: 1.0rem !important;
+        margin: 10px 0 20px 0 !important;
+        padding: 0 10px !important;
+        line-height: 1.4 !important;
         text-align: center !important;
     }
     
     .password-input-wrapper {
-        width: 90% !important;
-        max-width: 350px !important;
-        margin: 10px 0 !important;
+        width: 95% !important;
+        max-width: 450px !important;
+        margin: 20px 0 !important;
     }
     
     .password-check-btn-wrapper {
-        width: 200px !important;
-        height: 50px !important;
-        margin: 15px 0 !important;
+        width: 250px !important;
+        height: 60px !important;
+        margin: 25px 0 !important;
+    }
+    
+    .password-check-btn {
+        height: 60px !important;
+        font-size: 1.1rem !important;
     }
     
     /* PAYLAŞ/SAKLA PANELİ - MOBİL FİX */
