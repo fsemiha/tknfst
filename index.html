@@ -16,7 +16,7 @@
     <link rel="preload" href="fonts/Gilmer Light.otf" as="font" type="font/otf" crossorigin>
     <link rel="preload" href="fonts/Gilmer Bold.otf" as="font" type="font/otf" crossorigin>
     <link rel="preload" href="fonts/conthrax-sb.otf" as="font" type="font/otf" crossorigin>
-    <link rel="stylesheet" href="style.css?v=10.2&fixed-height=true">
+    <link rel="stylesheet" href="style.css?v=10.3&fullscreen=true">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js" defer></script>
     <!-- Mobile Console for debugging -->
     <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
@@ -2456,9 +2456,9 @@
         });
 
         // 🚀 VERSİYON BİLGİSİ
-        const gameVersion = "v10.2";
-        const cssVersion = "v10.2";
-        const buildDate = "2024-12-19 22:25";
+        const gameVersion = "v10.3";
+        const cssVersion = "v10.3";
+        const buildDate = "2024-12-19 22:30";
         
         console.log(`🚀 OYUN VERSİYONU: ${gameVersion}`);
         console.log(`🎨 CSS VERSİYONU: ${cssVersion}`);
@@ -2469,7 +2469,7 @@
         const cssLink = document.querySelector('link[href*="style.css"]');
         if (cssLink) {
             console.log(`💾 CSS DOSYASI: ${cssLink.href}`);
-            console.log(`⏰ CSS CACHE: ${cssLink.href.includes('v=10.2') ? '✅ GÜNCEL' : '❌ ESKİ'}`);
+            console.log(`⏰ CSS CACHE: ${cssLink.href.includes('v=10.3') ? '✅ GÜNCEL' : '❌ ESKİ'}`);
         }
         
         // Cihaz tipini algıla ve bilgi ver
