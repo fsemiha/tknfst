@@ -16,7 +16,7 @@
     <link rel="preload" href="fonts/Gilmer Light.otf" as="font" type="font/otf" crossorigin>
     <link rel="preload" href="fonts/Gilmer Bold.otf" as="font" type="font/otf" crossorigin>
     <link rel="preload" href="fonts/conthrax-sb.otf" as="font" type="font/otf" crossorigin>
-    <link rel="stylesheet" href="style.css?v=11.2&original-panels=true">
+    <link rel="stylesheet" href="style.css?v=12.1&landscape-mode=true">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js" defer></script>
     <!-- Mobile Console for debugging -->
     <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
@@ -49,7 +49,17 @@
           </div>
       </div>
       
-      <div class="background">
+      <!-- LANDSCAPE MODE UYARISI -->
+      <div class="landscape-warning" id="landscape-warning" style="display: none;">
+          <h2>📱 Daha İyi Deneyim İçin</h2>
+          <p>Telefunuzu <strong>yan çevirin</strong> (landscape mode)</p>
+          <p>Paneller daha geniş olacak ve oyun daha rahat oynayacaksınız!</p>
+          <div class="rotate-icon">🔄</div>
+          <p><small>Bu uyarı landscape modda otomatik kapanacak</small></p>
+      </div>
+      
+              <!-- Ana oyun içeriği -->
+        <div class="background">
           <img src="assets/Asset 4.svg" alt="Arka Plan" class="background-img" loading="lazy">
           <img src="assets/Asset 5.svg" alt="Siber Güvenlik Başkanlığı" class="logo" loading="lazy">
         <!-- Ana Panel -->
@@ -2456,9 +2466,9 @@
         });
 
         // 🚀 VERSİYON BİLGİSİ
-        const gameVersion = "v11.2";
-        const cssVersion = "v11.2";
-        const buildDate = "2024-12-19 23:15";
+        const gameVersion = "v12.1";
+        const cssVersion = "v12.1";
+        const buildDate = "2024-12-19 23:25";
         
         console.log(`🚀 OYUN VERSİYONU: ${gameVersion}`);
         console.log(`🎨 CSS VERSİYONU: ${cssVersion}`);
@@ -2469,7 +2479,7 @@
         const cssLink = document.querySelector('link[href*="style.css"]');
         if (cssLink) {
             console.log(`💾 CSS DOSYASI: ${cssLink.href}`);
-            console.log(`⏰ CSS CACHE: ${cssLink.href.includes('v=11.2') ? '✅ GÜNCEL' : '❌ ESKİ'}`);
+            console.log(`⏰ CSS CACHE: ${cssLink.href.includes('v=12.1') ? '✅ GÜNCEL' : '❌ ESKİ'}`);
         }
         
         // Cihaz tipini algıla ve bilgi ver
@@ -2577,10 +2587,34 @@
             }, 250);
         });
         
+        // 📱 LANDSCAPE UYARI SİSTEMİ
+        function checkOrientation() {
+            const warning = document.getElementById('landscape-warning');
+            const isMobile = isMobileDevice();
+            
+            if (isMobile && warning) {
+                if (window.innerHeight > window.innerWidth) {
+                    // Portrait mode - uyarı göster
+                    warning.style.display = 'flex';
+                    console.log('📱 PORTRAIT MODE - Landscape uyarısı gösteriliyor');
+                } else {
+                    // Landscape mode - uyarı gizle
+                    warning.style.display = 'none';
+                    console.log('📱 LANDSCAPE MODE - Optimal oyun deneyimi');
+                }
+            }
+        }
+        
+        // İlk kontrol
+        if (isMobileDevice()) {
+            checkOrientation();
+        }
+        
         // Orientation change için de dinle
         window.addEventListener('orientationchange', function() {
             setTimeout(() => {
                 console.log("🔄 Ekran rotasyonu - Optimizasyon yenileniyor...");
+                checkOrientation(); // Landscape uyarı kontrolü
                 if (typeof mobileDebugFix === 'function') {
                     mobileDebugFix();
                 }

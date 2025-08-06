@@ -1,8 +1,8 @@
 /* 
 ====================================
-TEKNOFEST MOBİL FİX v11.2 
-ORİJİNAL PANELLERİ KORU
-Build: 2024-12-19 23:15
+TEKNOFEST v12.1 - LANDSCAPE MODE
+KULLANICIYI YAN ÇEVİRMEYE TEŞVIK ET
+Build: 2024-12-19 23:25
 ====================================
 */
 @font-face {
@@ -1444,103 +1444,92 @@ body, html {
     }
 }
 
-/* TELEFON BOYUTLARI İÇİN MİNİMAL FİX - SADECE PHİSHİNG */
-@media (max-width: 768px) {
-    
-    /* SADECE PHISHING BUTONLARI İÇİN FİX - DİĞER PANELLERE DOKUNMA */
-    
-    /* PAYLAŞ/SAKLA PANELİ - MOBİL FİX */
-    .share-question-item {
-        font-size: 11px !important;
-        padding: 8px 6px !important;
-        line-height: 1.2 !important;
-        margin-bottom: 8px !important;
-        width: 88% !important;
-        max-width: 300px !important;
-        min-height: 40px !important;
-        text-align: center !important;
-        word-wrap: break-word !important;
-        overflow: hidden !important;
-        display: -webkit-box !important;
-        -webkit-line-clamp: 3 !important;
-        -webkit-box-orient: vertical !important;
-    }
-    
-    .share-buttons {
-        gap: 15px !important;
-        margin: 20px 0 !important;
-        width: 100% !important;
+/* MOBİL RESPONSIVE - HİÇBİR ÖZEL CSS YOK, ORİJİNAL CSS KULLAN */
+
+/* FİX BUTONU KALDIRILIYOR */
+
+/* LANDSCAPE MODE UYARISI VE OPTİMİZASYON */
+@media (max-width: 768px) and (orientation: portrait) {
+    /* PORTRAIT MODE UYARISI */
+    .landscape-warning {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        background: rgba(0, 0, 0, 0.9) !important;
+        color: white !important;
         display: flex !important;
+        flex-direction: column !important;
         justify-content: center !important;
-    }
-    
-    /* PHISHING BUTONLARI - MOBİL FİX */
-    .phishing-buttons-container {
-        gap: 8px !important;
-        padding: 10px 5px !important;
-        max-height: 60vh !important;
-        overflow-y: auto !important;
-        -webkit-overflow-scrolling: touch !important;
-    }
-    
-    .phishing-button {
-        width: 90% !important;
-        max-width: 320px !important;
-        min-height: 50px !important;
-        margin-bottom: 8px !important;
-        display: flex !important;
         align-items: center !important;
-        justify-content: center !important;
+        z-index: 99999 !important;
+        text-align: center !important;
+        padding: 20px !important;
+        box-sizing: border-box !important;
     }
     
-    .phishing-button div {
-        font-size: 8px !important;
-        line-height: 1.0 !important;
-        width: 85% !important;
-        padding: 2px !important;
-        max-height: 35px !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
-        word-break: break-word !important;
-        white-space: normal !important;
-        display: -webkit-box !important;
-        -webkit-line-clamp: 2 !important;
-        -webkit-box-orient: vertical !important;
-        text-align: center !important;
-        position: absolute !important;
-        top: 50% !important;
-        left: 50% !important;
-        transform: translate(-50%, -50%) !important;
+    .landscape-warning h2 {
+        font-size: 1.5rem !important;
+        margin-bottom: 20px !important;
+        color: #ffaa00 !important;
+    }
+    
+    .landscape-warning p {
+        font-size: 1rem !important;
+        line-height: 1.5 !important;
+        margin-bottom: 15px !important;
+    }
+    
+    .landscape-warning .rotate-icon {
+        font-size: 3rem !important;
+        margin: 20px 0 !important;
+        animation: rotate-animation 2s infinite linear !important;
     }
 }
 
-/* FİX BUTONU MOBİL OPTİMİZASYON */
-@media (max-width: 768px) {
-    #mobile-debug-btn {
-        width: 50px !important;
-        height: 50px !important;
-        font-size: 12px !important;
-        bottom: 15px !important;
-        right: 15px !important;
-    }
+@keyframes rotate-animation {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
-/* TABLET BOYUTLARI */
-@media (min-width: 481px) and (max-width: 768px) {
-    .phishing-button div {
-        font-size: 11px !important;
+/* LANDSCAPE MODE İÇİN OPTİMİZE EDİLMİŞ PANELLER */
+@media (max-width: 768px) and (orientation: landscape) {
+    .password-panel-outer {
+        width: 90vw !important;
+        max-width: 700px !important;
+        height: 85vh !important;
+    }
+    
+    .password-panel-content {
+        padding: 15px 20px !important;
+        gap: 10px !important;
+    }
+    
+    .password-title {
+        font-size: 1.1rem !important;
+        margin: 5px 0 !important;
+    }
+    
+    .password-desc {
+        font-size: 0.9rem !important;
+        margin: 5px 0 !important;
+    }
+    
+    .password-input-wrapper {
         width: 80% !important;
-        padding: 3px !important;
+        margin: 8px 0 !important;
     }
-}
-
-/* KÜÇÜK EKRANLAR İÇİN EK OPTİMİZASYON */
-@media (max-width: 480px) {
-    .phishing-button div {
-        font-size: 8px !important;
-        line-height: 1.0 !important;
-        width: 70% !important;
-        padding: 1px !important;
+    
+    .password-input-wrapper input {
+        height: 35px !important;
+        font-size: 0.9rem !important;
+    }
+    
+    .password-check-btn-wrapper {
+        width: 200px !important;
+        height: 40px !important;
+        margin: 10px 0 !important;
     }
 }
 
