@@ -1,8 +1,8 @@
 /* 
 ====================================
-TEKNOFEST MOBİL FİX v10.9 
-FULL SCREEN ZORLA - ARTIK YETER!
-Build: 2024-12-19 23:00
+TEKNOFEST MOBİL FİX v11.0 
+İÇERİĞİ KÜÇÜLT - ÇERÇEVEYE SIĞ
+Build: 2024-12-19 23:05
 ====================================
 */
 @font-face {
@@ -1447,80 +1447,69 @@ body, html {
 /* TELEFON BOYUTLARI İÇİN KAPSAMLI FİX */
 @media (max-width: 768px) {
     
-    /* PAROLA GÜCÜ PANELİ - FULL SCREEN ZORLA */
+    /* PAROLA GÜCÜ PANELİ - ORİJİNAL BOYUT KORU */
     .password-panel-outer {
-        width: 100vw !important;
-        height: 100vh !important;
-        min-width: 100vw !important;
-        min-height: 100vh !important;
-        max-width: none !important;
-        max-height: none !important;
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        transform: none !important;
-        overflow-y: auto !important;
-        overflow-x: hidden !important;
-        -webkit-overflow-scrolling: touch !important;
-        z-index: 10000 !important;
-        padding: 0 !important;
-        margin: 0 !important;
+        /* Orijinal boyutları koruyoruz - değiştirmiyoruz */
     }
     
     .password-panel-content {
-        width: 100% !important;
-        min-height: 100vh !important;
-        padding: 40px 30px !important;
-        margin: 0 !important;
+        padding: 10px 8px !important;
+        gap: 8px !important;
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
-        justify-content: center !important;
+        justify-content: space-between !important;
         box-sizing: border-box !important;
-        gap: 40px !important;
+        height: 100% !important;
+        overflow: hidden !important;
     }
     
     .password-title {
-        width: 100% !important;
-        font-size: clamp(1.5rem, 5vw, 2rem) !important;
-        margin: 0 0 20px 0 !important;
+        font-size: 0.8rem !important;
+        margin: 0 !important;
         padding: 0 !important;
         text-align: center !important;
-        line-height: 1.5 !important;
+        line-height: 1.1 !important;
         flex-shrink: 0 !important;
+        width: 100% !important;
+        max-height: 25px !important;
+        overflow: hidden !important;
     }
     
     .password-desc {
-        width: 100% !important;
-        font-size: clamp(1.1rem, 4vw, 1.5rem) !important;
-        margin: 0 0 30px 0 !important;
-        padding: 0 clamp(15px, 4vw, 30px) !important;
-        line-height: 1.5 !important;
+        font-size: 0.6rem !important;
+        margin: 0 !important;
+        padding: 0 5px !important;
+        line-height: 1.0 !important;
         text-align: center !important;
         flex-shrink: 0 !important;
+        width: 100% !important;
+        max-height: 20px !important;
+        overflow: hidden !important;
     }
     
     .password-input-wrapper {
-        width: 90% !important;
+        width: 95% !important;
         margin: 0 !important;
         padding: 0 !important;
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
-        gap: 15px !important;
-        flex-shrink: 0 !important;
+        gap: 5px !important;
+        flex: 1 !important;
+        max-height: 120px !important;
     }
     
     .password-input-wrapper input {
         width: 100% !important;
-        height: clamp(55px, 12vh, 75px) !important;
-        font-size: clamp(1.2rem, 4vw, 1.6rem) !important;
-        padding: clamp(15px, 3vh, 25px) !important;
+        height: 25px !important;
+        font-size: 0.7rem !important;
+        padding: 3px 8px !important;
         margin: 0 !important;
         box-sizing: border-box !important;
     }
     
-    /* PAROLA GÜCÜ GÖSTERGESİ - PANEL İÇİNDE */
+    /* PAROLA GÜCÜ GÖSTERGESİ - KÜÇÜK */
     .password-strength-container {
         width: 100% !important;
         margin: 0 !important;
@@ -1528,26 +1517,30 @@ body, html {
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
-        gap: 5px !important;
+        gap: 2px !important;
+        max-height: 30px !important;
     }
     
     .password-strength-bar {
         width: 100% !important;
-        height: 10px !important;
+        height: 4px !important;
         margin: 0 !important;
     }
     
     .password-strength-text {
-        font-size: 0.75rem !important;
+        font-size: 0.5rem !important;
         margin: 0 !important;
         text-align: center !important;
-        line-height: 1.2 !important;
+        line-height: 1.0 !important;
+        max-height: 12px !important;
+        overflow: hidden !important;
     }
     
     .password-check-btn-wrapper {
-        width: clamp(280px, 60vw, 400px) !important;
-        height: clamp(60px, 12vh, 80px) !important;
-        margin: 25px 0 !important;
+        width: 80% !important;
+        max-width: 200px !important;
+        height: 30px !important;
+        margin: 0 !important;
         padding: 0 !important;
         flex-shrink: 0 !important;
     }
@@ -1555,7 +1548,7 @@ body, html {
     .password-check-btn {
         width: 100% !important;
         height: 100% !important;
-        font-size: clamp(1.2rem, 4vw, 1.6rem) !important;
+        font-size: 0.7rem !important;
         margin: 0 !important;
         padding: 0 !important;
     }
