@@ -1,8 +1,8 @@
 /* 
 ====================================
-TEKNOFEST v12.1 - LANDSCAPE MODE
-KULLANICIYI YAN ÇEVİRMEYE TEŞVIK ET
-Build: 2024-12-19 23:25
+TEKNOFEST v12.2 - ULTRA LANDSCAPE
+3 KAT BÜYÜK PANELLER!
+Build: 2024-12-19 23:30
 ====================================
 */
 @font-face {
@@ -1493,43 +1493,79 @@ body, html {
     to { transform: rotate(360deg); }
 }
 
-/* LANDSCAPE MODE İÇİN OPTİMİZE EDİLMİŞ PANELLER */
-@media (max-width: 768px) and (orientation: landscape) {
+/* LANDSCAPE MODE İÇİN ULTRA BÜYÜK PANELLER */
+@media (orientation: landscape) and (max-height: 600px) {
     .password-panel-outer {
-        width: 90vw !important;
-        max-width: 700px !important;
-        height: 85vh !important;
+        width: 95vw !important;
+        max-width: none !important;
+        height: 90vh !important;
+        min-height: 90vh !important;
+        position: fixed !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        overflow-y: auto !important;
     }
     
     .password-panel-content {
-        padding: 15px 20px !important;
-        gap: 10px !important;
+        padding: 20px 30px !important;
+        gap: 15px !important;
+        min-height: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
     }
     
     .password-title {
-        font-size: 1.1rem !important;
-        margin: 5px 0 !important;
+        font-size: 1.4rem !important;
+        margin: 10px 0 !important;
+        text-align: center !important;
     }
     
     .password-desc {
-        font-size: 0.9rem !important;
-        margin: 5px 0 !important;
+        font-size: 1.1rem !important;
+        margin: 10px 0 15px 0 !important;
+        text-align: center !important;
+        line-height: 1.4 !important;
     }
     
     .password-input-wrapper {
-        width: 80% !important;
-        margin: 8px 0 !important;
+        width: 70% !important;
+        max-width: 500px !important;
+        margin: 15px 0 !important;
     }
     
     .password-input-wrapper input {
-        height: 35px !important;
-        font-size: 0.9rem !important;
+        height: 50px !important;
+        font-size: 1.1rem !important;
+        padding: 12px 15px !important;
+    }
+    
+    .password-strength-container {
+        width: 70% !important;
+        max-width: 500px !important;
+        margin: 10px 0 !important;
+    }
+    
+    .password-strength-bar {
+        height: 12px !important;
+    }
+    
+    .password-strength-text {
+        font-size: 1rem !important;
+        margin: 8px 0 !important;
     }
     
     .password-check-btn-wrapper {
-        width: 200px !important;
-        height: 40px !important;
-        margin: 10px 0 !important;
+        width: 300px !important;
+        height: 55px !important;
+        margin: 20px 0 !important;
+    }
+    
+    .password-check-btn {
+        font-size: 1.1rem !important;
+        height: 100% !important;
     }
 }
 

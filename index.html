@@ -16,7 +16,7 @@
     <link rel="preload" href="fonts/Gilmer Light.otf" as="font" type="font/otf" crossorigin>
     <link rel="preload" href="fonts/Gilmer Bold.otf" as="font" type="font/otf" crossorigin>
     <link rel="preload" href="fonts/conthrax-sb.otf" as="font" type="font/otf" crossorigin>
-    <link rel="stylesheet" href="style.css?v=12.1&landscape-mode=true">
+    <link rel="stylesheet" href="style.css?v=12.2&ultra-landscape=true">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js" defer></script>
     <!-- Mobile Console for debugging -->
     <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
@@ -50,13 +50,14 @@
       </div>
       
       <!-- LANDSCAPE MODE UYARISI -->
-      <div class="landscape-warning" id="landscape-warning" style="display: none;">
-          <h2>📱 Daha İyi Deneyim İçin</h2>
-          <p>Telefunuzu <strong>yan çevirin</strong> (landscape mode)</p>
-          <p>Paneller daha geniş olacak ve oyun daha rahat oynayacaksınız!</p>
-          <div class="rotate-icon">🔄</div>
-          <p><small>Bu uyarı landscape modda otomatik kapanacak</small></p>
-      </div>
+              <div class="landscape-warning" id="landscape-warning" style="display: none;">
+            <h2>📱 PAROLA PANELİ İÇİN ÖNEMLİ!</h2>
+            <p>Telefunuzu <strong>YAN ÇEVİRİN</strong> (landscape mode)</p>
+            <p><strong>Panel 3 kat daha büyük olacak!</strong></p>
+            <p>Parola girme alanı çok daha rahat olacak!</p>
+            <div class="rotate-icon">📱➡️📱</div>
+            <p><small>Yan çevirince bu uyarı kaybolacak</small></p>
+        </div>
       
               <!-- Ana oyun içeriği -->
         <div class="background">
@@ -2466,9 +2467,9 @@
         });
 
         // 🚀 VERSİYON BİLGİSİ
-        const gameVersion = "v12.1";
-        const cssVersion = "v12.1";
-        const buildDate = "2024-12-19 23:25";
+        const gameVersion = "v12.2";
+        const cssVersion = "v12.2";
+        const buildDate = "2024-12-19 23:30";
         
         console.log(`🚀 OYUN VERSİYONU: ${gameVersion}`);
         console.log(`🎨 CSS VERSİYONU: ${cssVersion}`);
@@ -2479,7 +2480,7 @@
         const cssLink = document.querySelector('link[href*="style.css"]');
         if (cssLink) {
             console.log(`💾 CSS DOSYASI: ${cssLink.href}`);
-            console.log(`⏰ CSS CACHE: ${cssLink.href.includes('v=12.1') ? '✅ GÜNCEL' : '❌ ESKİ'}`);
+            console.log(`⏰ CSS CACHE: ${cssLink.href.includes('v=12.2') ? '✅ GÜNCEL' : '❌ ESKİ'}`);
         }
         
         // Cihaz tipini algıla ve bilgi ver
