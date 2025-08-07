@@ -16,7 +16,7 @@
     <link rel="preload" href="fonts/Gilmer Light.otf" as="font" type="font/otf" crossorigin>
     <link rel="preload" href="fonts/Gilmer Bold.otf" as="font" type="font/otf" crossorigin>
     <link rel="preload" href="fonts/conthrax-sb.otf" as="font" type="font/otf" crossorigin>
-    <link rel="stylesheet" href="style.css?v=12.2&ultra-landscape=true">
+    <link rel="stylesheet" href="style.css?v=12.4&mini-content=true">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js" defer></script>
     <!-- Mobile Console for debugging -->
     <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
@@ -51,12 +51,13 @@
       
       <!-- LANDSCAPE MODE UYARISI -->
               <div class="landscape-warning" id="landscape-warning" style="display: none;">
-            <h2>📱 PAROLA PANELİ İÇİN ÖNEMLİ!</h2>
-            <p>Telefunuzu <strong>YAN ÇEVİRİN</strong> (landscape mode)</p>
-            <p><strong>Panel 3 kat daha büyük olacak!</strong></p>
-            <p>Parola girme alanı çok daha rahat olacak!</p>
-            <div class="rotate-icon">📱➡️📱</div>
-            <p><small>Yan çevirince bu uyarı kaybolacak</small></p>
+            <h2>📱 MİNİ CONTENT MODE! 📱</h2>
+            <p><strong>İçerik çok küçültüldü!</strong></p>
+            <p><strong>Çerçeve aynı - yazılar mini!</strong></p>
+            <p>Title: 14px, Input: 10px, Button: 10px!</p>
+            <p>Phishing: 8px, Share: 9px!</p>
+            <div class="rotate-icon">🔍🔍🔍</div>
+            <p><strong>ULTRA MİNİ FONTLAR GARANTİSİ!</strong></p>
         </div>
       
               <!-- Ana oyun içeriği -->
@@ -2467,9 +2468,9 @@
         });
 
         // 🚀 VERSİYON BİLGİSİ
-        const gameVersion = "v12.2";
-        const cssVersion = "v12.2";
-        const buildDate = "2024-12-19 23:30";
+        const gameVersion = "v12.4";
+        const cssVersion = "v12.4";
+        const buildDate = "2024-12-19 23:40";
         
         console.log(`🚀 OYUN VERSİYONU: ${gameVersion}`);
         console.log(`🎨 CSS VERSİYONU: ${cssVersion}`);
@@ -2480,7 +2481,7 @@
         const cssLink = document.querySelector('link[href*="style.css"]');
         if (cssLink) {
             console.log(`💾 CSS DOSYASI: ${cssLink.href}`);
-            console.log(`⏰ CSS CACHE: ${cssLink.href.includes('v=12.2') ? '✅ GÜNCEL' : '❌ ESKİ'}`);
+            console.log(`⏰ CSS CACHE: ${cssLink.href.includes('v=12.4') ? '✅ GÜNCEL' : '❌ ESKİ'}`);
         }
         
         // Cihaz tipini algıla ve bilgi ver
@@ -2588,21 +2589,14 @@
             }, 250);
         });
         
-        // 📱 LANDSCAPE UYARI SİSTEMİ
+        // 📱 MİNİ CONTENT MODE - UYARI YOK
         function checkOrientation() {
             const warning = document.getElementById('landscape-warning');
-            const isMobile = isMobileDevice();
             
-            if (isMobile && warning) {
-                if (window.innerHeight > window.innerWidth) {
-                    // Portrait mode - uyarı göster
-                    warning.style.display = 'flex';
-                    console.log('📱 PORTRAIT MODE - Landscape uyarısı gösteriliyor');
-                } else {
-                    // Landscape mode - uyarı gizle
-                    warning.style.display = 'none';
-                    console.log('📱 LANDSCAPE MODE - Optimal oyun deneyimi');
-                }
+            // Mini content mode - uyarı her zaman gizli
+            if (warning) {
+                warning.style.display = 'none';
+                console.log('📱 MİNİ CONTENT MODE - Uyarı devre dışı');
             }
         }
         
