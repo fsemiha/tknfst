@@ -1,9 +1,9 @@
 /* 
 ====================================
-TEKNOFEST v12.4 - MİNİ CONTENT
-ÇERÇEVE SABİT - İÇERİK KÜÇÜLTME!
-ULTRA MİNİ FONTLAR - GARANTİ!
-Build: 2024-12-19 23:40
+TEKNOFEST v12.5 - ULTRA MİNİ INPUTS
+PAROLA KUTULARI: 20px YÜKSEKLİK!
+FONT: 9px, TITLE: 12px, DESC: 9px
+Build: 2024-12-19 23:45
 ====================================
 */
 @font-face {
@@ -1498,59 +1498,94 @@ body, html {
 @media (max-width: 768px) {
     /* ÇERÇEVE BOYUTLARINA DOKUNMA - SADECE İÇERİĞİ KÜÇÜLT */
     
-    /* PAROLA PANELİ İÇERİK KÜÇÜLTME */
-    .password-title {
-        font-size: 14px !important;
-        line-height: 1.2 !important;
-        margin: 5px 0 !important;
-        padding: 0 !important;
-    }
-    
-    .password-desc {
-        font-size: 11px !important;
+    /* PAROLA PANELİ İÇERİK KÜÇÜLTME - ULTRA AGGRESSIVE */
+    .password-title,
+    #password-panel .password-title,
+    body .password-title {
+        font-size: 12px !important;
         line-height: 1.1 !important;
-        margin: 3px 0 !important;
-        padding: 0 !important;
-    }
-    
-    .password-input-wrapper {
-        width: 90% !important;
-        margin: 5px 0 !important;
-        padding: 0 !important;
-    }
-    
-    .password-input-wrapper input {
-        height: 25px !important;
-        font-size: 10px !important;
-        padding: 3px 5px !important;
-        margin: 0 !important;
-    }
-    
-    .password-strength-container {
-        width: 90% !important;
-        margin: 3px 0 !important;
-    }
-    
-    .password-strength-bar {
-        height: 6px !important;
         margin: 2px 0 !important;
+        padding: 0 !important;
+        text-align: center !important;
     }
     
-    .password-strength-text {
+    .password-desc,
+    #password-panel .password-desc,
+    body .password-desc {
         font-size: 9px !important;
+        line-height: 1.0 !important;
         margin: 2px 0 !important;
+        padding: 0 !important;
+        text-align: center !important;
+        max-width: 90% !important;
+    }
+    
+    .password-input-wrapper,
+    #password-panel .password-input-wrapper,
+    body .password-input-wrapper {
+        width: 80% !important;
+        max-width: 200px !important;
+        margin: 3px auto !important;
+        padding: 0 !important;
+        height: auto !important;
+    }
+    
+    .password-input-wrapper input,
+    #password-panel .password-input-wrapper input,
+    body .password-input-wrapper input,
+    input.password-input {
+        width: 100% !important;
+        height: 20px !important;
+        font-size: 9px !important;
+        padding: 2px 4px !important;
+        margin: 0 !important;
+        box-sizing: border-box !important;
+        min-height: 20px !important;
+        max-height: 20px !important;
+    }
+    
+    .password-strength-container,
+    #password-panel .password-strength-container,
+    body .password-strength-container {
+        width: 80% !important;
+        max-width: 200px !important;
+        margin: 2px auto !important;
+    }
+    
+    .password-strength-bar,
+    #password-panel .password-strength-bar,
+    body .password-strength-bar {
+        height: 4px !important;
+        margin: 1px 0 !important;
+    }
+    
+    .password-strength-text,
+    #password-panel .password-strength-text,
+    body .password-strength-text {
+        font-size: 7px !important;
+        margin: 1px 0 !important;
         line-height: 1 !important;
+        text-align: center !important;
     }
     
-    .password-check-btn-wrapper {
-        width: 80px !important;
-        height: 25px !important;
-        margin: 5px 0 !important;
+    .password-check-btn-wrapper,
+    #password-panel .password-check-btn-wrapper,
+    body .password-check-btn-wrapper {
+        width: 70px !important;
+        height: 20px !important;
+        margin: 3px auto !important;
+        max-width: 70px !important;
     }
     
-    .password-check-btn {
-        font-size: 10px !important;
-        padding: 2px !important;
+    .password-check-btn,
+    #password-panel .password-check-btn,
+    body .password-check-btn {
+        width: 100% !important;
+        height: 100% !important;
+        font-size: 8px !important;
+        padding: 1px !important;
+        line-height: 1 !important;
+        text-align: center !important;
     }
     
     /* PHİSHİNG BUTONLARI KÜÇÜLTME */
