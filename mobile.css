@@ -1,0 +1,552 @@
+/* 
+====================================
+MOBİL OYUN CSS - TEKNOFEST 2024
+Vertical Scroll Design
+Large Touch Areas
+Responsive Layout
+====================================
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'Gilmer Bold';
+    src: url('fonts/Gilmer Bold.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Gilmer Regular';
+    src: url('fonts/Gilmer Regular.otf') format('opentype');
+}
+
+body {
+    font-family: 'Gilmer Regular', sans-serif;
+    background: linear-gradient(135deg, #0f0f2a 0%, #2d1b69 100%);
+    color: white;
+    overflow-x: hidden;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    min-height: 100vh;
+}
+
+.mobile-game-container {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* EKRAN YÖNETİMİ */
+.mobile-screen {
+    display: none;
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+}
+
+.mobile-screen.active {
+    display: flex;
+}
+
+/* HEADER STİLLERİ */
+.mobile-header {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px 0;
+}
+
+.mobile-logo {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 15px;
+}
+
+.mobile-header h1 {
+    font-family: 'Gilmer Bold', sans-serif;
+    font-size: 28px;
+    margin-bottom: 10px;
+    background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.mobile-header h2 {
+    font-family: 'Gilmer Bold', sans-serif;
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.mobile-header p {
+    font-size: 16px;
+    opacity: 0.8;
+    margin-bottom: 5px;
+}
+
+/* CONTENT STİLLERİ */
+.mobile-content {
+    width: 100%;
+    max-width: 400px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+/* INPUT STİLLERİ */
+.mobile-input-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.mobile-input-group {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.mobile-input-group label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.mobile-input {
+    width: 100%;
+    height: 60px;
+    font-size: 18px;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: white;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.mobile-input:focus {
+    outline: none;
+    border-color: #4CAF50;
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.02);
+}
+
+.mobile-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* STRENGTH INDICATOR */
+.mobile-strength-indicator {
+    margin-top: 10px;
+    width: 100%;
+}
+
+.strength-bar {
+    width: 0%;
+    height: 8px;
+    background: #ff4444;
+    border-radius: 10px;
+    transition: all 0.5s ease;
+    margin-bottom: 5px;
+}
+
+.strength-text {
+    font-size: 14px;
+    color: #ff4444;
+    font-weight: bold;
+}
+
+/* BUTON STİLLERİ */
+.mobile-btn {
+    padding: 18px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    min-width: 200px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px 0;
+}
+
+.mobile-btn.primary {
+    background: linear-gradient(45deg, #4CAF50, #45a049);
+    color: white;
+    box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+}
+
+.mobile-btn.secondary {
+    background: linear-gradient(45deg, #2196F3, #1976D2);
+    color: white;
+    box-shadow: 0 8px 20px rgba(33, 150, 243, 0.3);
+}
+
+.mobile-btn.small {
+    min-width: 100px;
+    height: 45px;
+    font-size: 14px;
+    padding: 10px 20px;
+}
+
+.mobile-btn.green {
+    background: linear-gradient(45deg, #4CAF50, #45a049);
+}
+
+.mobile-btn.red {
+    background: linear-gradient(45deg, #f44336, #d32f2f);
+}
+
+.mobile-btn:active {
+    transform: scale(0.95);
+}
+
+.mobile-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* INFO SECTION */
+.mobile-info {
+    text-align: center;
+    margin-top: 20px;
+    opacity: 0.7;
+}
+
+.mobile-info p {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+/* SORU STİLLERİ */
+.mobile-question {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.question-text {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+/* PHISHING ÖRNEĞİ */
+.phishing-example {
+    margin-top: 15px;
+}
+
+.email-preview {
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: left;
+    border: 2px solid #ff4444;
+}
+
+.email-preview h4 {
+    color: #ff4444;
+    margin-bottom: 10px;
+}
+
+.email-preview p {
+    color: #333;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.fake-link {
+    background: #ff4444;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* CEVAP BUTONLARI */
+.mobile-answers {
+    width: 100%;
+    display: flex;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.mobile-answer-btn {
+    flex: 1;
+    height: 80px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.mobile-answer-btn:first-child {
+    background: linear-gradient(45deg, #4CAF50, #45a049);
+    color: white;
+}
+
+.mobile-answer-btn:last-child {
+    background: linear-gradient(45deg, #f44336, #d32f2f);
+    color: white;
+}
+
+/* SHARE OPTIONS */
+.share-options {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.share-item {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.share-item p {
+    font-size: 16px;
+    font-weight: bold;
+    flex: 1;
+}
+
+.share-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+/* SKOR GÖSTERGESI */
+.score-display {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+.score-circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #4CAF50, #45a049);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(76, 175, 80, 0.3);
+}
+
+.score-number {
+    font-size: 48px;
+    font-weight: bold;
+    color: white;
+}
+
+.score-text {
+    font-size: 16px;
+    color: white;
+    opacity: 0.9;
+}
+
+/* SKOR DETAYLARI */
+.score-breakdown {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 25px;
+    margin: 20px 0;
+}
+
+.score-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 16px;
+}
+
+.score-item:last-child {
+    border-bottom: none;
+}
+
+.score-item span:last-child {
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+/* SKOR TABLOSU */
+.scoreboard-list {
+    width: 100%;
+    max-height: 60vh;
+    overflow-y: auto;
+    margin: 20px 0;
+}
+
+.scoreboard-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    margin: 10px 0;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    font-size: 16px;
+}
+
+.scoreboard-item .rank {
+    font-weight: bold;
+    font-size: 20px;
+    color: #4CAF50;
+    min-width: 30px;
+}
+
+.scoreboard-item .name {
+    flex: 1;
+    margin-left: 15px;
+    font-weight: bold;
+}
+
+.scoreboard-item .device {
+    font-size: 20px;
+    margin: 0 10px;
+}
+
+.scoreboard-item .score {
+    font-weight: bold;
+    font-size: 18px;
+    color: #ffd93d;
+}
+
+/* MOBİL RESPONSİVE */
+@media (max-width: 480px) {
+    .mobile-screen {
+        padding: 15px;
+    }
+    
+    .mobile-header h1 {
+        font-size: 24px;
+    }
+    
+    .mobile-header h2 {
+        font-size: 20px;
+    }
+    
+    .mobile-input {
+        height: 55px;
+        font-size: 16px;
+    }
+    
+    .mobile-btn {
+        min-width: 180px;
+        height: 55px;
+        font-size: 16px;
+    }
+    
+    .score-circle {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .score-number {
+        font-size: 36px;
+    }
+}
+
+@media (max-width: 360px) {
+    .mobile-answers {
+        flex-direction: column;
+    }
+    
+    .mobile-answer-btn {
+        height: 60px;
+        font-size: 16px;
+    }
+    
+    .share-item {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .share-buttons {
+        justify-content: center;
+    }
+}
+
+/* ANIMASYONLAR */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.mobile-screen.active {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* SCROLL STİLLERİ */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+} 

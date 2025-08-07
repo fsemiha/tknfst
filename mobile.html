@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Siber Güvenlik Oyunu - Mobil</title>
+    <link rel="stylesheet" href="mobile.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2d1b69">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="preload" href="fonts/Gilmer Bold.otf" as="font" type="font/otf" crossorigin>
+</head>
+<body>
+    <!-- MOBIL OYUN CONTAINER -->
+    <div class="mobile-game-container" id="mobile-game">
+        
+        <!-- BAŞLANGIÇ EKRANI -->
+        <section class="mobile-screen active" id="start-screen">
+            <div class="mobile-header">
+                <img src="assets/Asset 5.svg" alt="Logo" class="mobile-logo">
+                <h1>SİBER GÜVENLİK</h1>
+                <p>Teknofest Mobil Versiyonu</p>
+            </div>
+            
+            <div class="mobile-input-section">
+                <input type="text" id="mobile-player-name" placeholder="İsminizi girin..." class="mobile-input">
+                <button onclick="startMobileGame()" class="mobile-btn primary">BAŞLA</button>
+            </div>
+            
+            <div class="mobile-info">
+                <p>📱 Mobil optimize edildi</p>
+                <p>🏆 PC ile aynı skor tablosu</p>
+            </div>
+        </section>
+
+        <!-- PAROLA GÜCÜ EKRANI -->
+        <section class="mobile-screen" id="password-screen">
+            <div class="mobile-header">
+                <h2>🔐 PAROLA GÜCÜ</h2>
+                <p>Güçlü parola oluşturun</p>
+            </div>
+            
+            <div class="mobile-content">
+                <div class="mobile-input-group">
+                    <label>Parola girin:</label>
+                    <input type="password" id="mobile-password1" class="mobile-input" placeholder="Parolanız...">
+                    <div class="mobile-strength-indicator" id="mobile-strength1">
+                        <div class="strength-bar"></div>
+                        <span class="strength-text">Parola girin</span>
+                    </div>
+                </div>
+                
+                <div class="mobile-input-group">
+                    <label>Parolayı tekrar girin:</label>
+                    <input type="password" id="mobile-password2" class="mobile-input" placeholder="Tekrar...">
+                    <div class="mobile-strength-indicator" id="mobile-strength2">
+                        <div class="strength-bar"></div>
+                        <span class="strength-text">Parola girin</span>
+                    </div>
+                </div>
+                
+                <button onclick="checkPasswords()" class="mobile-btn primary">KONTROL ET</button>
+                <button onclick="nextScreen('phishing-screen')" class="mobile-btn secondary">SONRAKİ →</button>
+            </div>
+        </section>
+
+        <!-- OLTALAMA TESTİ EKRANI -->
+        <section class="mobile-screen" id="phishing-screen">
+            <div class="mobile-header">
+                <h2>🎣 OLTALAMA TESTİ</h2>
+                <p>Sahte e-postaları tanıyın</p>
+            </div>
+            
+            <div class="mobile-content">
+                <div class="mobile-question" id="mobile-phishing-question">
+                    <p class="question-text">Bu e-posta güvenli mi?</p>
+                    <div class="phishing-example">
+                        <div class="email-preview">
+                            <h4>🚨 ACİL: Hesabınız kapatılacak!</h4>
+                            <p>Sayın kullanıcı, hesabınız 24 saat içinde kapatılacaktır. Hemen tıklayın!</p>
+                            <button class="fake-link">BURAYA TIKLAYIN</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mobile-answers">
+                    <button onclick="selectAnswer('safe')" class="mobile-answer-btn">✅ GÜVENLİ</button>
+                    <button onclick="selectAnswer('unsafe')" class="mobile-answer-btn">❌ TEHLİKELİ</button>
+                </div>
+                
+                <button onclick="nextScreen('share-screen')" class="mobile-btn secondary">SONRAKİ →</button>
+            </div>
+        </section>
+
+        <!-- PAYLAŞ/SAKLA EKRANI -->
+        <section class="mobile-screen" id="share-screen">
+            <div class="mobile-header">
+                <h2>🤐 PAYLAŞ/SAKLA</h2>
+                <p>Hangi bilgiyi paylaşırsın?</p>
+            </div>
+            
+            <div class="mobile-content">
+                <div class="mobile-question">
+                    <p class="question-text">Sosyal medyada paylaşır mısın?</p>
+                </div>
+                
+                <div class="share-options">
+                    <div class="share-item">
+                        <p>📱 Telefon numarası</p>
+                        <div class="share-buttons">
+                            <button onclick="shareAnswer('phone', 'share')" class="mobile-btn small green">PAYLAŞ</button>
+                            <button onclick="shareAnswer('phone', 'hide')" class="mobile-btn small red">SAKLA</button>
+                        </div>
+                    </div>
+                    
+                    <div class="share-item">
+                        <p>🏠 Ev adresi</p>
+                        <div class="share-buttons">
+                            <button onclick="shareAnswer('address', 'share')" class="mobile-btn small green">PAYLAŞ</button>
+                            <button onclick="shareAnswer('address', 'hide')" class="mobile-btn small red">SAKLA</button>
+                        </div>
+                    </div>
+                    
+                    <div class="share-item">
+                        <p>🎂 Doğum tarihi</p>
+                        <div class="share-buttons">
+                            <button onclick="shareAnswer('birthday', 'share')" class="mobile-btn small green">PAYLAŞ</button>
+                            <button onclick="shareAnswer('birthday', 'hide')" class="mobile-btn small red">SAKLA</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <button onclick="finishGame()" class="mobile-btn primary">OYUNU BİTİR</button>
+            </div>
+        </section>
+
+        <!-- SONUÇ EKRANI -->
+        <section class="mobile-screen" id="result-screen">
+            <div class="mobile-header">
+                <h2>🏆 SONUÇ</h2>
+                <p>Tebrikler!</p>
+            </div>
+            
+            <div class="mobile-content">
+                <div class="score-display">
+                    <div class="score-circle">
+                        <span class="score-number" id="final-score">85</span>
+                        <span class="score-text">PUAN</span>
+                    </div>
+                </div>
+                
+                <div class="score-breakdown">
+                    <div class="score-item">
+                        <span>Parola Gücü:</span>
+                        <span id="password-score">30/30</span>
+                    </div>
+                    <div class="score-item">
+                        <span>Oltalama:</span>
+                        <span id="phishing-score">25/30</span>
+                    </div>
+                    <div class="score-item">
+                        <span>Gizlilik:</span>
+                        <span id="privacy-score">30/40</span>
+                    </div>
+                </div>
+                
+                <button onclick="showScoreboard()" class="mobile-btn primary">SKOR TABLOSU</button>
+                <button onclick="restartGame()" class="mobile-btn secondary">YENİDEN OYNA</button>
+            </div>
+        </section>
+
+        <!-- SKOR TABLOSU -->
+        <section class="mobile-screen" id="scoreboard-screen">
+            <div class="mobile-header">
+                <h2>🏆 SKOR TABLOSU</h2>
+                <p>En iyi oyuncular</p>
+            </div>
+            
+            <div class="mobile-content">
+                <div class="scoreboard-list" id="mobile-scoreboard">
+                    <!-- Firebase'den gelecek -->
+                </div>
+                
+                <button onclick="restartGame()" class="mobile-btn primary">YENİ OYUN</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Firebase Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database-compat.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>
+    <script src="firebase-config.js"></script>
+    <script>
+        // MOBİL OYUN LOGİĞİ
+        let currentScreen = 'start-screen';
+        let playerName = '';
+        let gameScore = {
+            password: 0,
+            phishing: 0,
+            privacy: 0,
+            total: 0
+        };
+
+        // Firebase bağlantısı
+        const database = firebase.database();
+
+        function startMobileGame() {
+            playerName = document.getElementById('mobile-player-name').value.trim();
+            if (!playerName) {
+                alert('Lütfen isminizi girin!');
+                return;
+            }
+            nextScreen('password-screen');
+        }
+
+        function nextScreen(screenId) {
+            // Mevcut ekranı gizle
+            document.querySelector('.mobile-screen.active').classList.remove('active');
+            // Yeni ekranı göster
+            document.getElementById(screenId).classList.add('active');
+            currentScreen = screenId;
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        function checkPasswords() {
+            const pass1 = document.getElementById('mobile-password1').value;
+            const pass2 = document.getElementById('mobile-password2').value;
+            
+            if (!pass1 || !pass2) {
+                alert('Lütfen her iki parolayı da girin!');
+                return;
+            }
+            
+            if (pass1 !== pass2) {
+                alert('Parolalar eşleşmiyor!');
+                return;
+            }
+            
+            // Parola gücü hesapla
+            const result = zxcvbn(pass1);
+            const score = (result.score + 1) * 6; // 0-4 arası skoru 6-30 arası yap
+            gameScore.password = score;
+            
+            alert(`Parola gücü: ${score}/30 puan`);
+            updateStrengthDisplay(result.score);
+        }
+
+        function updateStrengthDisplay(score) {
+            const colors = ['#ff4444', '#ff8800', '#ffaa00', '#88dd00', '#00dd44'];
+            const texts = ['Çok Zayıf', 'Zayıf', 'Orta', 'İyi', 'Mükemmel'];
+            
+            document.querySelectorAll('.strength-bar').forEach(bar => {
+                bar.style.width = ((score + 1) * 20) + '%';
+                bar.style.backgroundColor = colors[score];
+            });
+            
+            document.querySelectorAll('.strength-text').forEach(text => {
+                text.textContent = texts[score];
+                text.style.color = colors[score];
+            });
+        }
+
+        function selectAnswer(answer) {
+            // Oltalama sorusu cevabı
+            if (answer === 'unsafe') {
+                gameScore.phishing = 30; // Doğru cevap
+                alert('Doğru! +30 puan');
+            } else {
+                gameScore.phishing = 10; // Yanlış cevap
+                alert('Yanlış! Bu e-posta sahte. +10 puan');
+            }
+            
+            // Visual feedback
+            document.querySelectorAll('.mobile-answer-btn').forEach(btn => {
+                btn.style.opacity = '0.5';
+            });
+            event.target.style.opacity = '1';
+            event.target.style.border = '3px solid #00ff00';
+        }
+
+        function shareAnswer(item, action) {
+            // Gizlilik puanlaması
+            const correctAnswers = {
+                phone: 'hide',    // Telefon numarası saklanmalı
+                address: 'hide',  // Adres saklanmalı  
+                birthday: 'share' // Doğum tarihi paylaşılabilir
+            };
+            
+            if (correctAnswers[item] === action) {
+                gameScore.privacy += 13; // 40/3 ≈ 13 puan
+            } else {
+                gameScore.privacy += 5;  // Yanlış cevap için düşük puan
+            }
+            
+            // Visual feedback
+            event.target.style.backgroundColor = action === 'share' ? '#4CAF50' : '#f44336';
+            event.target.style.color = 'white';
+            
+            // Diğer butonu deaktif et
+            const siblings = event.target.parentElement.querySelectorAll('.mobile-btn');
+            siblings.forEach(btn => {
+                if (btn !== event.target) {
+                    btn.style.opacity = '0.3';
+                    btn.disabled = true;
+                }
+            });
+        }
+
+        function finishGame() {
+            // Toplam skoru hesapla
+            gameScore.total = gameScore.password + gameScore.phishing + gameScore.privacy;
+            
+            // Sonuç ekranını güncelle
+            document.getElementById('final-score').textContent = gameScore.total;
+            document.getElementById('password-score').textContent = `${gameScore.password}/30`;
+            document.getElementById('phishing-score').textContent = `${gameScore.phishing}/30`;
+            document.getElementById('privacy-score').textContent = `${gameScore.privacy}/40`;
+            
+            // Firebase'e kaydet
+            saveScoreToFirebase();
+            
+            // Sonuç ekranına geç
+            nextScreen('result-screen');
+        }
+
+        function saveScoreToFirebase() {
+            const scoreData = {
+                name: playerName,
+                score: gameScore.total,
+                device: 'Mobile',
+                date: new Date().toISOString(),
+                breakdown: {
+                    password: gameScore.password,
+                    phishing: gameScore.phishing,
+                    privacy: gameScore.privacy
+                }
+            };
+            
+            database.ref('scores').push(scoreData)
+                .then(() => {
+                    console.log('✅ Mobil skor Firebase\'e kaydedildi');
+                })
+                .catch((error) => {
+                    console.error('❌ Skor kaydetme hatası:', error);
+                });
+        }
+
+        function showScoreboard() {
+            loadScoreboard();
+            nextScreen('scoreboard-screen');
+        }
+
+        function loadScoreboard() {
+            database.ref('scores').orderByChild('score').limitToLast(10).once('value')
+                .then((snapshot) => {
+                    const scores = [];
+                    snapshot.forEach((child) => {
+                        scores.push(child.val());
+                    });
+                    
+                    scores.reverse(); // En yüksek puan üstte
+                    displayScoreboard(scores);
+                })
+                .catch((error) => {
+                    console.error('Skor tablosu yükleme hatası:', error);
+                });
+        }
+
+        function displayScoreboard(scores) {
+            const container = document.getElementById('mobile-scoreboard');
+            container.innerHTML = '';
+            
+            scores.forEach((score, index) => {
+                const item = document.createElement('div');
+                item.className = 'scoreboard-item';
+                item.innerHTML = `
+                    <span class="rank">${index + 1}</span>
+                    <span class="name">${score.name}</span>
+                    <span class="device">${score.device === 'Mobile' ? '📱' : '💻'}</span>
+                    <span class="score">${score.score}</span>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        function restartGame() {
+            // Oyunu sıfırla
+            gameScore = { password: 0, phishing: 0, privacy: 0, total: 0 };
+            playerName = '';
+            
+            // Form alanlarını temizle
+            document.getElementById('mobile-player-name').value = '';
+            document.getElementById('mobile-password1').value = '';
+            document.getElementById('mobile-password2').value = '';
+            
+            // Butonları sıfırla
+            document.querySelectorAll('.mobile-btn').forEach(btn => {
+                btn.style.opacity = '1';
+                btn.style.border = '';
+                btn.style.backgroundColor = '';
+                btn.disabled = false;
+            });
+            
+            // İlk ekrana dön
+            nextScreen('start-screen');
+        }
+
+        // Sayfa yüklendiğinde
+        window.addEventListener('load', function() {
+            console.log('📱 Mobil oyun yüklendi');
+            
+            // Touch feedback
+            document.addEventListener('touchstart', function(e) {
+                if (e.target.classList.contains('mobile-btn')) {
+                    e.target.style.transform = 'scale(0.95)';
+                }
+            });
+            
+            document.addEventListener('touchend', function(e) {
+                if (e.target.classList.contains('mobile-btn')) {
+                    e.target.style.transform = 'scale(1)';
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
