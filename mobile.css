@@ -1,552 +1,731 @@
 /* 
 ====================================
-MOBİL OYUN CSS - TEKNOFEST 2024
-Vertical Scroll Design
-Large Touch Areas
-Responsive Layout
+MOBİL VERSİYON - PC ile AYNI TASARIM!
+Aynı assetler, aynı renkler, aynı düzen
+Sadece mobil optimize CSS
+Build: 2024-12-20 00:15
 ====================================
 */
+@font-face {
+    font-family: 'Gilmer';
+    src: url('fonts/Gilmer Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Gilmer';
+    src: url('fonts/Gilmer Bold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Gilmer Light';
+    src: url('fonts/Gilmer Light.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Conthrax';
+    src: url('fonts/conthrax-sb.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
 
-* {
+body, html {
+    height: 100%;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-@font-face {
-    font-family: 'Gilmer Bold';
-    src: url('fonts/Gilmer Bold.otf') format('opentype');
-}
-
-@font-face {
-    font-family: 'Gilmer Regular';
-    src: url('fonts/Gilmer Regular.otf') format('opentype');
-}
-
-body {
-    font-family: 'Gilmer Regular', sans-serif;
-    background: linear-gradient(135deg, #0f0f2a 0%, #2d1b69 100%);
-    color: white;
-    overflow-x: hidden;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
+    font-family: 'Gilmer', Arial, sans-serif;
+    background: radial-gradient(circle at 20% 40%, #0a2a4d 60%, #0b0f2a 100%);
+    color: #fff;
+    min-height: 100vh;
+    overflow: hidden;
+    /* MOBİL BASE AYARLARI */
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    touch-action: manipulation;
     user-select: none;
-    min-height: 100vh;
 }
 
-.mobile-game-container {
-    width: 100%;
-    min-height: 100vh;
+.background {
+    width: 100vw;
+    height: 100vh;
     position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #0a1428 0%, #1a2844 50%, #2a3c66 100%);
 }
 
-/* EKRAN YÖNETİMİ */
-.mobile-screen {
-    display: none;
-    width: 100%;
+.background-img {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center center;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.95;
+    min-width: 100vw;
     min-height: 100vh;
-    padding: 20px;
+}
+
+.logo {
+    position: fixed;
+    top: 32px;
+    left: 32px;
+    width: 110px;
+    height: auto;
+    z-index: 3;
+}
+
+.center-panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    z-index: 2;
+}
+
+.main-title-panel {
     position: relative;
-}
-
-.mobile-screen.active {
     display: flex;
-}
-
-/* HEADER STİLLERİ */
-.mobile-header {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 30px;
-    padding: 20px 0;
-}
-
-.mobile-logo {
-    width: 80px;
-    height: 80px;
-    margin-bottom: 15px;
-}
-
-.mobile-header h1 {
-    font-family: 'Gilmer Bold', sans-serif;
-    font-size: 28px;
-    margin-bottom: 10px;
-    background: linear-gradient(45deg, #ff6b6b, #ffd93d);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.mobile-header h2 {
-    font-family: 'Gilmer Bold', sans-serif;
-    font-size: 24px;
-    margin-bottom: 10px;
-    color: #fff;
-}
-
-.mobile-header p {
-    font-size: 16px;
-    opacity: 0.8;
-    margin-bottom: 5px;
-}
-
-/* CONTENT STİLLERİ */
-.mobile-content {
-    width: 100%;
-    max-width: 400px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-}
-
-/* INPUT STİLLERİ */
-.mobile-input-section {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-bottom: 30px;
-}
-
-.mobile-input-group {
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-.mobile-input-group label {
-    display: block;
-    font-size: 16px;
-    margin-bottom: 8px;
-    color: #fff;
-    font-weight: bold;
-}
-
-.mobile-input {
-    width: 100%;
-    height: 60px;
-    font-size: 18px;
-    padding: 15px 20px;
-    border: none;
-    border-radius: 15px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    color: white;
-    text-align: center;
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
-}
-
-.mobile-input:focus {
-    outline: none;
-    border-color: #4CAF50;
-    background: rgba(255, 255, 255, 0.2);
-    transform: scale(1.02);
-}
-
-.mobile-input::placeholder {
-    color: rgba(255, 255, 255, 0.6);
-}
-
-/* STRENGTH INDICATOR */
-.mobile-strength-indicator {
-    margin-top: 10px;
-    width: 100%;
-}
-
-.strength-bar {
-    width: 0%;
-    height: 8px;
-    background: #ff4444;
-    border-radius: 10px;
-    transition: all 0.5s ease;
-    margin-bottom: 5px;
-}
-
-.strength-text {
-    font-size: 14px;
-    color: #ff4444;
-    font-weight: bold;
-}
-
-/* BUTON STİLLERİ */
-.mobile-btn {
-    padding: 18px 30px;
-    font-size: 18px;
-    font-weight: bold;
-    border: none;
-    border-radius: 15px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    min-width: 200px;
-    height: 60px;
-    display: flex;
-    align-items: center;
     justify-content: center;
-    margin: 5px 0;
+    align-items: center;
+    flex-direction: column;
 }
 
-.mobile-btn.primary {
-    background: linear-gradient(45deg, #4CAF50, #45a049);
-    color: white;
-    box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
-}
-
-.mobile-btn.secondary {
-    background: linear-gradient(45deg, #2196F3, #1976D2);
-    color: white;
-    box-shadow: 0 8px 20px rgba(33, 150, 243, 0.3);
-}
-
-.mobile-btn.small {
-    min-width: 100px;
-    height: 45px;
-    font-size: 14px;
-    padding: 10px 20px;
-}
-
-.mobile-btn.green {
-    background: linear-gradient(45deg, #4CAF50, #45a049);
-}
-
-.mobile-btn.red {
-    background: linear-gradient(45deg, #f44336, #d32f2f);
-}
-
-.mobile-btn:active {
-    transform: scale(0.95);
-}
-
-.mobile-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
-}
-
-/* INFO SECTION */
-.mobile-info {
-    text-align: center;
-    margin-top: 20px;
-    opacity: 0.7;
-}
-
-.mobile-info p {
-    font-size: 14px;
-    margin: 5px 0;
-}
-
-/* SORU STİLLERİ */
-.mobile-question {
-    width: 100%;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 25px;
+.main-title-svg {
+    width: 400px;
+    height: auto;
     margin-bottom: 20px;
+}
+
+.inside-panel {
+    background: rgba(45, 27, 105, 0.95);
+    border-radius: 20px;
+    padding: 30px;
     text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.question-text {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 15px;
-    color: #fff;
-}
-
-/* PHISHING ÖRNEĞİ */
-.phishing-example {
-    margin-top: 15px;
-}
-
-.email-preview {
-    background: rgba(255, 255, 255, 0.9);
-    color: #333;
-    padding: 20px;
-    border-radius: 15px;
-    text-align: left;
-    border: 2px solid #ff4444;
-}
-
-.email-preview h4 {
-    color: #ff4444;
-    margin-bottom: 10px;
-}
-
-.email-preview p {
-    color: #333;
-    margin-bottom: 15px;
+.panel-desc {
+    font-size: 18px;
+    color: #ffaa00;
+    margin-bottom: 25px;
+    font-family: 'Gilmer Light', Arial, sans-serif;
     line-height: 1.4;
 }
 
-.fake-link {
-    background: #ff4444;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-/* CEVAP BUTONLARI */
-.mobile-answers {
-    width: 100%;
-    display: flex;
+.main-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 15px;
-    margin: 20px 0;
+    max-width: 500px;
 }
 
-.mobile-answer-btn {
-    flex: 1;
-    height: 80px;
-    font-size: 18px;
-    font-weight: bold;
-    border: none;
-    border-radius: 15px;
+.main-btn-svg {
+    width: 100%;
+    height: auto;
     cursor: pointer;
     transition: all 0.3s ease;
+    border-radius: 12px;
+}
+
+.main-btn-svg:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+.main-btn-svg:active {
+    transform: scale(0.95);
+}
+
+.start-svg {
+    grid-column: 1 / -1;
+}
+
+/* INPUT PANEL STYLES */
+.input-svg-wrapper {
+    position: relative;
+    margin: 20px 0;
+    width: 100%;
+    max-width: 400px;
+}
+
+.input-svg {
+    width: 100%;
+    height: auto;
+}
+
+.username-input-on-svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    width: 80%;
+    font-family: 'Gilmer', Arial, sans-serif;
+}
+
+.username-input-on-svg::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* PASSWORD PANEL STYLES */
+.password-panel-outer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.password-panel-bg {
+    width: 600px;
+    height: auto;
+}
+
+.password-panel-top {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+    z-index: 1;
+}
+
+.svg-box {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.svg-bg {
+    width: 120px;
+    height: auto;
+}
+
+.svg-text {
+    position: absolute;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
     text-align: center;
+    white-space: nowrap;
 }
 
-.mobile-answer-btn:first-child {
-    background: linear-gradient(45deg, #4CAF50, #45a049);
-    color: white;
-}
-
-.mobile-answer-btn:last-child {
-    background: linear-gradient(45deg, #f44336, #d32f2f);
-    color: white;
-}
-
-/* SHARE OPTIONS */
-.share-options {
-    width: 100%;
+.password-panel-content {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    align-items: center;
+    text-align: center;
+    width: 80%;
+    max-width: 500px;
+}
+
+.security-icon {
+    width: 60px;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.password-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffaa00;
+    margin-bottom: 10px;
+    font-family: 'Conthrax', Arial, sans-serif;
+}
+
+.password-desc {
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.password-input-wrapper {
+    margin: 15px 0;
+}
+
+.password-input {
+    font-size: 14px;
+}
+
+.password-check-btn-wrapper {
     margin: 20px 0;
 }
 
-.share-item {
+.password-check-btn {
+    width: 150px;
+    height: auto;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.password-check-btn:hover {
+    transform: scale(1.05);
+}
+
+.password-result {
     background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 15px;
     padding: 20px;
+    border-radius: 15px;
+    margin-top: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#strength-label {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#crack-time {
+    font-size: 14px;
+    color: #ccc;
+    margin-bottom: 10px;
+}
+
+#congrats-message {
+    font-size: 16px;
+    color: #00ff99;
+    margin-bottom: 15px;
+}
+
+.next-task-btn {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.next-task-btn:hover {
+    transform: scale(1.05);
+}
+
+.next-task-btn img {
+    width: 200px;
+    height: auto;
+}
+
+/* SHARE PANEL STYLES */
+.share-questions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.share-question-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.share-item p {
+.share-question-text {
     font-size: 16px;
-    font-weight: bold;
+    color: #fff;
     flex: 1;
 }
 
-.share-buttons {
+.share-options {
     display: flex;
     gap: 10px;
 }
 
-/* SKOR GÖSTERGESI */
-.score-display {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin: 30px 0;
+.share-btn {
+    width: 40px;
+    height: auto;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 8px;
 }
 
-.score-circle {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background: linear-gradient(45deg, #4CAF50, #45a049);
+.share-btn:hover {
+    transform: scale(1.1);
+}
+
+.share-btn:active {
+    transform: scale(0.95);
+}
+
+/* PHISHING PANEL STYLES */
+.phishing-buttons-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.phishing-button {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    box-shadow: 0 10px 30px rgba(76, 175, 80, 0.3);
+    gap: 10px;
 }
 
-.score-number {
-    font-size: 48px;
-    font-weight: bold;
-    color: white;
+.phishing-button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
 }
 
-.score-text {
-    font-size: 16px;
-    color: white;
-    opacity: 0.9;
+.phishing-button img {
+    width: 60px;
+    height: auto;
 }
 
-/* SKOR DETAYLARI */
-.score-breakdown {
-    width: 100%;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 25px;
-    margin: 20px 0;
+.phishing-button div {
+    font-size: 14px;
+    color: #fff;
+    line-height: 1.3;
+    word-break: break-word;
 }
 
-.score-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    font-size: 16px;
-}
-
-.score-item:last-child {
-    border-bottom: none;
-}
-
-.score-item span:last-child {
-    font-weight: bold;
-    color: #4CAF50;
-}
-
-/* SKOR TABLOSU */
-.scoreboard-list {
-    width: 100%;
-    max-height: 60vh;
-    overflow-y: auto;
-    margin: 20px 0;
-}
-
-.scoreboard-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 15px 20px;
-    margin: 10px 0;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 15px;
-    font-size: 16px;
-}
-
-.scoreboard-item .rank {
-    font-weight: bold;
-    font-size: 20px;
-    color: #4CAF50;
-    min-width: 30px;
-}
-
-.scoreboard-item .name {
-    flex: 1;
-    margin-left: 15px;
-    font-weight: bold;
-}
-
-.scoreboard-item .device {
-    font-size: 20px;
-    margin: 0 10px;
-}
-
-.scoreboard-item .score {
-    font-weight: bold;
-    font-size: 18px;
-    color: #ffd93d;
-}
-
-/* MOBİL RESPONSİVE */
-@media (max-width: 480px) {
-    .mobile-screen {
-        padding: 15px;
+/* MOBİL OPTİMİZASYONLAR */
+@media (max-width: 768px) {
+    .main-title-svg {
+        width: 300px;
     }
     
-    .mobile-header h1 {
-        font-size: 24px;
+    .inside-panel {
+        padding: 25px;
+        margin: 0 20px;
     }
     
-    .mobile-header h2 {
+    .panel-desc {
+        font-size: 16px;
+    }
+    
+    .main-buttons {
+        gap: 12px;
+    }
+    
+    .password-panel-bg {
+        width: 90vw;
+        max-width: 500px;
+    }
+    
+    .password-panel-top {
+        top: 15px;
+        gap: 15px;
+    }
+    
+    .svg-bg {
+        width: 100px;
+    }
+    
+    .svg-text {
+        font-size: 12px;
+    }
+    
+    .password-panel-content {
+        top: 80px;
+        width: 85%;
+    }
+    
+    .password-title {
         font-size: 20px;
     }
     
-    .mobile-input {
-        height: 55px;
-        font-size: 16px;
+    .password-desc {
+        font-size: 14px;
     }
     
-    .mobile-btn {
-        min-width: 180px;
-        height: 55px;
-        font-size: 16px;
+    .share-question-item {
+        padding: 12px;
     }
     
-    .score-circle {
-        width: 120px;
-        height: 120px;
+    .share-question-text {
+        font-size: 14px;
     }
     
-    .score-number {
-        font-size: 36px;
+    .phishing-buttons-container {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .phishing-button {
+        padding: 15px;
+    }
+    
+    .phishing-button div {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-title-svg {
+        width: 250px;
+    }
+    
+    .inside-panel {
+        padding: 20px;
+        margin: 0 15px;
+    }
+    
+    .panel-desc {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+    
+    .main-buttons {
+        gap: 10px;
+    }
+    
+    .password-panel-bg {
+        width: 95vw;
+    }
+    
+    .password-panel-top {
+        top: 12px;
+        gap: 12px;
+    }
+    
+    .svg-bg {
+        width: 80px;
+    }
+    
+    .svg-text {
+        font-size: 11px;
+    }
+    
+    .password-panel-content {
+        top: 70px;
+        width: 90%;
+    }
+    
+    .password-title {
+        font-size: 18px;
+    }
+    
+    .password-desc {
+        font-size: 13px;
+    }
+    
+    .security-icon {
+        width: 50px;
+    }
+    
+    .share-question-item {
+        padding: 10px;
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .share-options {
+        justify-content: center;
+    }
+    
+    .phishing-button {
+        padding: 12px;
+    }
+    
+    .phishing-button img {
+        width: 50px;
+    }
+    
+    .phishing-button div {
+        font-size: 11px;
     }
 }
 
 @media (max-width: 360px) {
-    .mobile-answers {
-        flex-direction: column;
+    .main-title-svg {
+        width: 200px;
     }
     
-    .mobile-answer-btn {
-        height: 60px;
+    .inside-panel {
+        padding: 15px;
+        margin: 0 10px;
+    }
+    
+    .panel-desc {
+        font-size: 13px;
+    }
+    
+    .password-panel-bg {
+        width: 98vw;
+    }
+    
+    .password-panel-top {
+        top: 10px;
+        gap: 10px;
+    }
+    
+    .svg-bg {
+        width: 70px;
+    }
+    
+    .svg-text {
+        font-size: 10px;
+    }
+    
+    .password-panel-content {
+        top: 60px;
+        width: 95%;
+    }
+    
+    .password-title {
         font-size: 16px;
     }
     
-    .share-item {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
+    .password-desc {
+        font-size: 12px;
     }
     
-    .share-buttons {
-        justify-content: center;
+    .security-icon {
+        width: 45px;
+    }
+    
+    .share-question-item {
+        padding: 8px;
+    }
+    
+    .share-question-text {
+        font-size: 12px;
+    }
+    
+    .share-btn {
+        width: 35px;
+    }
+    
+    .phishing-button {
+        padding: 10px;
+    }
+    
+    .phishing-button img {
+        width: 45px;
+    }
+    
+    .phishing-button div {
+        font-size: 10px;
     }
 }
 
-/* ANIMASYONLAR */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
+/* TOUCH OPTIMIZASYONLAR */
+@media (hover: none) and (pointer: coarse) {
+    .main-btn-svg:hover {
+        transform: none;
+        filter: none;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    
+    .password-check-btn:hover {
+        transform: none;
+    }
+    
+    .next-task-btn:hover {
+        transform: none;
+    }
+    
+    .share-btn:hover {
+        transform: none;
+    }
+    
+    .phishing-button:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.3);
+        transform: none;
     }
 }
 
-.mobile-screen.active {
-    animation: fadeIn 0.5s ease-out;
+/* LOADING ANIMATION */
+@keyframes loading {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
 }
 
-/* SCROLL STİLLERİ */
+/* SCROLLBAR STYLING */
 ::-webkit-scrollbar {
-    width: 6px;
+    width: 8px;
 }
 
 ::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, 0.1);
-    border-radius: 3px;
+    border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 3px;
+    background: rgba(255, 170, 0, 0.6);
+    border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 170, 0, 0.8);
+}
+
+/* FADE IN ANIMATIONS */
+.center-panel {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translate(-50%, -50%) scale(0.95); }
+    to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+/* DEBUG BUTTON STYLING */
+#mobile-debug-btn {
+    transition: all 0.3s ease;
+}
+
+#mobile-debug-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(255, 68, 68, 0.4);
+}
+
+#mobile-debug-btn:active {
+    transform: scale(0.95);
+}
+
+/* MODAL STYLING */
+#scoreboard-modal {
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+#scoreboard-modal > div {
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from { transform: translate(-50%, -50%) scale(0.9); opacity: 0; }
+    to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
 } 

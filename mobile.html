@@ -2,233 +2,348 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Siber Güvenlik Oyunu - Mobil</title>
-    <link rel="stylesheet" href="mobile.css">
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#2d1b69">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#0a1428">
+    <title>Siber Macera - Teknofest Mobile</title>
+    <!-- Preconnect for better loading performance -->
+    <link rel="preconnect" href="https://www.gstatic.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <!-- Font preload for faster loading -->
+    <link rel="preload" href="fonts/Gilmer Regular.otf" as="font" type="font/otf" crossorigin>
+    <link rel="preload" href="fonts/Gilmer Light.otf" as="font" type="font/otf" crossorigin>
     <link rel="preload" href="fonts/Gilmer Bold.otf" as="font" type="font/otf" crossorigin>
-</head>
-<body>
-    <!-- MOBIL OYUN CONTAINER -->
-    <div class="mobile-game-container" id="mobile-game">
+    <link rel="preload" href="fonts/conthrax-sb.otf" as="font" type="font/otf" crossorigin>
+    <link rel="stylesheet" href="mobile.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js" defer></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js" defer></script>
+    
+    <!-- PWA Manifest for mobile installation -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/Asset 5.svg">
+  </head>
+  <body>
+      <!-- Yükleme Ekranı -->
+      <div id="loading-screen" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: linear-gradient(135deg, #0a1428 0%, #1a2844 50%, #2a3c66 100%); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999;">
+          <img src="assets/oyungirisekranı.svg" alt="Oyun Giriş Ekranı" style="max-width: 80%; max-height: 40%; margin-bottom: 30px;" loading="eager">
+          <div style="color: #ffaa00; font-family: 'Gilmer Light', Arial, sans-serif; font-size: 1.2rem; margin-bottom: 30px; text-align: center;">
+              Mobil oyun yükleniyor...
+          </div>
+          <div style="width: 200px; height: 6px; background: rgba(255,255,255,0.2); border-radius: 3px; overflow: hidden;">
+              <div style="width: 100%; height: 100%; background: linear-gradient(90deg, #00ff99, #0066cc); border-radius: 3px; animation: loading 2s ease-in-out infinite;"></div>
+          </div>
+      </div>
+      
+      <!-- Ana oyun içeriği -->
+      <div class="background">
+          <img src="assets/Asset 4.svg" alt="Arka Plan" class="background-img" loading="lazy">
+          <img src="assets/Asset 5.svg" alt="Siber Güvenlik Başkanlığı" class="logo" loading="lazy">
+        <!-- Ana Panel -->
+        <div class="center-panel" id="main-panel">
+            <div class="main-title-panel">
+                <img src="assets/Asset 13.svg" alt="Siber Macera" class="main-title-svg" loading="lazy">
+                <div class="inside-panel">
+                    <div class="panel-desc">Siber sırları çöz, oyunu kazan, güvende kal!</div>
+                    <div class="main-buttons">
+                        <img src="assets/Asset 9.svg" alt="Parola Gücü" class="main-btn-svg" loading="lazy">
+                        <img src="assets/Asset 10.svg" alt="Paylaş/Sakla" class="main-btn-svg" loading="lazy">
+                        <img src="assets/Asset 11.svg" alt="Oltalama Testi" class="main-btn-svg" loading="lazy">
+                        <img src="assets/Asset 12.svg" alt="Hemen Başla" class="main-btn-svg start-svg" id="start-btn" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Kullanıcı Adı Paneli -->
+        <div class="center-panel" id="username-panel" style="display:none;">
+            <div class="main-title-panel">
+                <img src="assets/Asset 13.svg" alt="Siber Macera" class="main-title-svg" loading="lazy">
+                <div class="inside-panel">
+                    <div class="panel-desc">Macaraya başlamak için<br>kod adınızı giriniz.</div>
+                    <div class="input-svg-wrapper">
+                        <img src="assets/Asset 14.svg" alt="Input Alanı" class="input-svg" loading="lazy">
+                        <input type="text" class="username-input-on-svg" placeholder="Kod adınız..." id="username-input">
+                    </div>
+                    <img src="assets/Asset 15.svg" alt="Oyuna Başla" class="main-btn-svg start-svg" id="play-btn" loading="lazy">
+                </div>
+            </div>
+        </div>
+        <!-- Parola Gücü Paneli -->
+        <div class="center-panel" id="password-panel" style="display:none;">
+            <div class="password-panel-outer">
+                <img src="assets/Asset 27.svg" alt="Panel Çerçeve" class="password-panel-bg" loading="lazy">
+                <!-- Üst Bilgiler -->
+                <div class="password-panel-top">
+                  <div class="svg-box">
+                    <img src="assets/Asset 28.svg" class="svg-bg" loading="lazy">
+                    <div class="svg-text" id="timer">Süre: 00:00</div>
+                  </div>
+                  <div class="svg-box">
+                    <img src="assets/Asset 29.svg" class="svg-bg" loading="lazy">
+                    <div class="svg-text">Puan: <span id="score">0</span></div>
+                  </div>
+                </div>
+                <!-- Başlık ve Açıklama -->
+                <div class="password-panel-content">
+                    <img src="assets/Asset 34.svg" alt="Güvenlik İkonu" class="security-icon" loading="lazy">
+                    <div class="password-title">PAROLA GÜCÜ</div>
+                    <div class="password-desc" id="password-desc">Parolanızı girin ve gücünü test edin.</div>
+                    <div class="input-svg-wrapper password-input-wrapper" id="password-input-wrapper">
+                        <img src="assets/Asset 32.svg" alt="Parola Input" class="input-svg" loading="lazy">
+                        <input type="password" class="username-input-on-svg password-input" placeholder="Parolanız..." id="password-input-1">
+                    </div>
+                    <div class="input-svg-wrapper password-input-wrapper" id="password-confirm-wrapper" style="margin-top: 12px;">
+                        <img src="assets/Asset 32.svg" alt="Parola Onay Input" class="input-svg" loading="lazy">
+                        <input type="password" class="username-input-on-svg password-input" placeholder="Parolayı tekrar girin..." id="password-input-2">
+                    </div>
+                    <div id="password-match-message" style="text-align: center; margin: 8px 0; font-size: 0.9rem; color: #ff4444;"></div>
+                    <div class="password-check-btn-wrapper" id="password-check-btn-wrapper">
+                        <img src="assets/Asset 33.svg" alt="Kontrol Et" class="password-check-btn" id="check-password-btn" style="opacity: 0.5; pointer-events: none;" loading="lazy">
+                    </div>
+                    <div class="password-result" id="password-result" style="display:none;">
+                        <div id="strength-label"></div>
+                        <div id="crack-time"></div>
+                        <div id="congrats-message"></div>
+                        <div id="next-task-btn" class="next-task-btn" style="display:none;">
+                            <img src="assets/Asset 35.svg" alt="Paylaş/Sakla Görevine Geç" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- PAYLAŞ/SAKLA Paneli -->
+        <div class="center-panel" id="share-panel" style="display:none;">
+            <div class="password-panel-outer">
+                <img src="assets/Asset 27.svg" alt="Panel Çerçeve" class="password-panel-bg">
+                <div class="password-panel-top">
+                  <div class="svg-box">
+                    <img src="assets/Asset 28.svg" class="svg-bg">
+                    <div class="svg-text" id="timer-share">Süre: 00:00</div>
+                  </div>
+                  <div class="svg-box">
+                    <img src="assets/Asset 29.svg" class="svg-bg">
+                    <div class="svg-text">Puan: <span id="score-share">0</span></div>
+                  </div>
+                </div>
+                <div class="password-panel-content">
+                    <img src="assets/Asset 36.svg" alt="Paylaş İkonu" class="security-icon" loading="lazy">
+                    <div class="password-title">PAYLAŞ/SAKLA</div>
+                    <div class="password-desc" id="share-desc">Hangi bilgiyi paylaşıp hangisini saklayacağını belirle.</div>
+                    <div class="share-questions" id="share-questions">
+                        <div class="share-question-item" data-type="name">
+                            <span class="share-question-text">Adınız</span>
+                            <div class="share-options">
+                                <img src="assets/Asset 37.svg" alt="Paylaş" class="share-btn" data-action="share" data-type="name" loading="lazy">
+                                <img src="assets/Asset 38.svg" alt="Sakla" class="share-btn" data-action="hide" data-type="name" loading="lazy">
+                            </div>
+                        </div>
+                        <div class="share-question-item" data-type="phone">
+                            <span class="share-question-text">Telefon numaranız</span>
+                            <div class="share-options">
+                                <img src="assets/Asset 37.svg" alt="Paylaş" class="share-btn" data-action="share" data-type="phone" loading="lazy">
+                                <img src="assets/Asset 38.svg" alt="Sakla" class="share-btn" data-action="hide" data-type="phone" loading="lazy">
+                            </div>
+                        </div>
+                        <div class="share-question-item" data-type="address">
+                            <span class="share-question-text">Ev adresiniz</span>
+                            <div class="share-options">
+                                <img src="assets/Asset 37.svg" alt="Paylaş" class="share-btn" data-action="share" data-type="address" loading="lazy">
+                                <img src="assets/Asset 38.svg" alt="Sakla" class="share-btn" data-action="hide" data-type="address" loading="lazy">
+                            </div>
+                        </div>
+                        <div class="share-question-item" data-type="birthday">
+                            <span class="share-question-text">Doğum tarihiniz</span>
+                            <div class="share-options">
+                                <img src="assets/Asset 37.svg" alt="Paylaş" class="share-btn" data-action="share" data-type="birthday" loading="lazy">
+                                <img src="assets/Asset 38.svg" alt="Sakla" class="share-btn" data-action="hide" data-type="birthday" loading="lazy">
+                            </div>
+                        </div>
+                        <div class="share-question-item" data-type="income">
+                            <span class="share-question-text">Maaşınız</span>
+                            <div class="share-options">
+                                <img src="assets/Asset 37.svg" alt="Paylaş" class="share-btn" data-action="share" data-type="income" loading="lazy">
+                                <img src="assets/Asset 38.svg" alt="Sakla" class="share-btn" data-action="hide" data-type="income" loading="lazy">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="next-task-btn" id="share-next-btn" style="display:none;">
+                        <img src="assets/oltalamatestinegec.svg" alt="Oltalama Testine Geç" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- OLTALAMA TESTİ Paneli -->
+        <div class="center-panel" id="phishing-panel" style="display:none;">
+            <div class="password-panel-outer">
+                <img src="assets/Asset 27.svg" alt="Panel Çerçeve" class="password-panel-bg" loading="lazy">
+                <div class="password-panel-top">
+                    <div class="svg-box">
+                        <img src="assets/Asset 28.svg" class="svg-bg" loading="lazy">
+                        <div class="svg-text" id="timer-phishing">Süre: 00:00</div>
+                    </div>
+                    <div class="svg-box">
+                        <img src="assets/Asset 29.svg" class="svg-bg" loading="lazy">
+                        <div class="svg-text">Puan: <span id="score-phishing">0</span></div>
+                    </div>
+                </div>
+                <div class="password-panel-content">
+                    <img src="assets/Asset 39.svg" alt="Phishing İkonu" class="security-icon" loading="lazy">
+                    <div class="password-title">OLTALAMA TESTİ</div>
+                    <div class="password-desc" id="phishing-desc">Aşağıdaki bağlantılardan hangisi güvenli?</div>
+                    <div class="phishing-buttons-container" id="phishing-buttons-container">
+                        <div class="phishing-button" data-safe="true" data-clicked="false">
+                            <img src="assets/Asset 43.svg" alt="Güvenli Bağlantı" loading="lazy">
+                            <div>www.teknofest.org/resmi-sayfa</div>
+                        </div>
+                        <div class="phishing-button" data-safe="false" data-clicked="false">
+                            <img src="assets/Asset 44.svg" alt="Sahte Bağlantı" loading="lazy">
+                            <div>www.teknofest-bedava-para.tk</div>
+                        </div>
+                        <div class="phishing-button" data-safe="false" data-clicked="false">
+                            <img src="assets/Asset 45.svg" alt="Sahte Bağlantı" loading="lazy">
+                            <div>www.teknofest.co.uk/kazandin</div>
+                        </div>
+                        <div class="phishing-button" data-safe="false" data-clicked="false">
+                            <img src="assets/Asset 46.svg" alt="Sahte Bağlantı" loading="lazy">
+                            <div>www.teknofest.com/hemen-tıkla</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Sonuç Paneli -->
+        <div class="center-panel" id="result-panel" style="display:none;">
+            <div class="main-title-panel">
+                <img src="assets/Asset 13.svg" alt="Siber Macera" class="main-title-svg" loading="lazy">
+                <div class="inside-panel">
+                    <div class="panel-desc" id="result-text">Tebrikler! Görevleri başarıyla tamamladınız.</div>
+                    <div class="results-display" id="results-display">
+                        <!-- Sonuçlar burada gösterilecek -->
+                    </div>
+                    <img src="assets/Asset 60.svg" alt="Skorboard" class="main-btn-svg start-svg" id="show-scoreboard-btn" loading="lazy">
+                </div>
+            </div>
+        </div>
+      </div>
+      
+      <!-- Mobil için debug buton -->
+      <div id="mobile-debug-btn" style="position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; background: #ff4444; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 14px; cursor: pointer; z-index: 1000; box-shadow: 0 4px 12px rgba(255, 68, 68, 0.3);" onclick="if(typeof mobileDebugFix === 'function') mobileDebugFix(); else console.log('❌ mobileDebugFix fonksiyonu bulunamadı');">
+          FİX
+      </div>
+      
+      <!-- Skor tablosu modal -->
+      <div id="scoreboard-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:10000;">
+          <div style="position:relative; top:50%; left:50%; transform:translate(-50%,-50%); background:#2d1b69; padding:30px; border-radius:15px; max-width:90%; max-height:80%; overflow-y:auto;">
+              <h2 style="color:#ffaa00; text-align:center; margin-bottom:20px;">🏆 SKOR TABLOSU</h2>
+              <div id="scoreboard-content">
+                  <!-- Skorlar burada gösterilecek -->
+              </div>
+              <button onclick="closeScoreboard()" style="background:#ff4444; color:white; border:none; padding:10px 20px; border-radius:8px; margin-top:20px; cursor:pointer; display:block; margin-left:auto; margin-right:auto;">Kapat</button>
+          </div>
+      </div>
+
+      <!-- Firebase Configuration -->
+      <script src="firebase-config.js"></script>
+      <script>
+        // 🚀 MOBİL VERSİYON BİLGİSİ
+        const gameVersion = "v13.0-MOBILE";
+        const cssVersion = "mobile-v1.0";
+        const buildDate = "2024-12-20 00:10";
         
-        <!-- BAŞLANGIÇ EKRANI -->
-        <section class="mobile-screen active" id="start-screen">
-            <div class="mobile-header">
-                <img src="assets/Asset 5.svg" alt="Logo" class="mobile-logo">
-                <h1>SİBER GÜVENLİK</h1>
-                <p>Teknofest Mobil Versiyonu</p>
-            </div>
-            
-            <div class="mobile-input-section">
-                <input type="text" id="mobile-player-name" placeholder="İsminizi girin..." class="mobile-input">
-                <button onclick="startMobileGame()" class="mobile-btn primary">BAŞLA</button>
-            </div>
-            
-            <div class="mobile-info">
-                <p>📱 Mobil optimize edildi</p>
-                <p>🏆 PC ile aynı skor tablosu</p>
-            </div>
-        </section>
+        console.log(`📱 MOBİL OYUN VERSİYONU: ${gameVersion}`);
+        console.log(`🎨 MOBİL CSS: ${cssVersion}`);
+        console.log(`📅 YAPIM TARİHİ: ${buildDate}`);
+        console.log(`🔥 PC ile aynı tasarım, mobil optimize!`);
 
-        <!-- PAROLA GÜCÜ EKRANI -->
-        <section class="mobile-screen" id="password-screen">
-            <div class="mobile-header">
-                <h2>🔐 PAROLA GÜCÜ</h2>
-                <p>Güçlü parola oluşturun</p>
-            </div>
-            
-            <div class="mobile-content">
-                <div class="mobile-input-group">
-                    <label>Parola girin:</label>
-                    <input type="password" id="mobile-password1" class="mobile-input" placeholder="Parolanız...">
-                    <div class="mobile-strength-indicator" id="mobile-strength1">
-                        <div class="strength-bar"></div>
-                        <span class="strength-text">Parola girin</span>
-                    </div>
-                </div>
-                
-                <div class="mobile-input-group">
-                    <label>Parolayı tekrar girin:</label>
-                    <input type="password" id="mobile-password2" class="mobile-input" placeholder="Tekrar...">
-                    <div class="mobile-strength-indicator" id="mobile-strength2">
-                        <div class="strength-bar"></div>
-                        <span class="strength-text">Parola girin</span>
-                    </div>
-                </div>
-                
-                <button onclick="checkPasswords()" class="mobile-btn primary">KONTROL ET</button>
-                <button onclick="nextScreen('phishing-screen')" class="mobile-btn secondary">SONRAKİ →</button>
-            </div>
-        </section>
+        // Global değişkenler
+        let currentUsername = '';
+        let currentPanel = 'main-panel';
+        let gameStartTime;
+        let gameScore = 0;
+        let passwordScore = 0;
+        let shareScore = 0;
+        let phishingScore = 0;
+        let gameTimer;
+        let currentTask = '';
 
-        <!-- OLTALAMA TESTİ EKRANI -->
-        <section class="mobile-screen" id="phishing-screen">
-            <div class="mobile-header">
-                <h2>🎣 OLTALAMA TESTİ</h2>
-                <p>Sahte e-postaları tanıyın</p>
-            </div>
-            
-            <div class="mobile-content">
-                <div class="mobile-question" id="mobile-phishing-question">
-                    <p class="question-text">Bu e-posta güvenli mi?</p>
-                    <div class="phishing-example">
-                        <div class="email-preview">
-                            <h4>🚨 ACİL: Hesabınız kapatılacak!</h4>
-                            <p>Sayın kullanıcı, hesabınız 24 saat içinde kapatılacaktır. Hemen tıklayın!</p>
-                            <button class="fake-link">BURAYA TIKLAYIN</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="mobile-answers">
-                    <button onclick="selectAnswer('safe')" class="mobile-answer-btn">✅ GÜVENLİ</button>
-                    <button onclick="selectAnswer('unsafe')" class="mobile-answer-btn">❌ TEHLİKELİ</button>
-                </div>
-                
-                <button onclick="nextScreen('share-screen')" class="mobile-btn secondary">SONRAKİ →</button>
-            </div>
-        </section>
-
-        <!-- PAYLAŞ/SAKLA EKRANI -->
-        <section class="mobile-screen" id="share-screen">
-            <div class="mobile-header">
-                <h2>🤐 PAYLAŞ/SAKLA</h2>
-                <p>Hangi bilgiyi paylaşırsın?</p>
-            </div>
-            
-            <div class="mobile-content">
-                <div class="mobile-question">
-                    <p class="question-text">Sosyal medyada paylaşır mısın?</p>
-                </div>
-                
-                <div class="share-options">
-                    <div class="share-item">
-                        <p>📱 Telefon numarası</p>
-                        <div class="share-buttons">
-                            <button onclick="shareAnswer('phone', 'share')" class="mobile-btn small green">PAYLAŞ</button>
-                            <button onclick="shareAnswer('phone', 'hide')" class="mobile-btn small red">SAKLA</button>
-                        </div>
-                    </div>
-                    
-                    <div class="share-item">
-                        <p>🏠 Ev adresi</p>
-                        <div class="share-buttons">
-                            <button onclick="shareAnswer('address', 'share')" class="mobile-btn small green">PAYLAŞ</button>
-                            <button onclick="shareAnswer('address', 'hide')" class="mobile-btn small red">SAKLA</button>
-                        </div>
-                    </div>
-                    
-                    <div class="share-item">
-                        <p>🎂 Doğum tarihi</p>
-                        <div class="share-buttons">
-                            <button onclick="shareAnswer('birthday', 'share')" class="mobile-btn small green">PAYLAŞ</button>
-                            <button onclick="shareAnswer('birthday', 'hide')" class="mobile-btn small red">SAKLA</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <button onclick="finishGame()" class="mobile-btn primary">OYUNU BİTİR</button>
-            </div>
-        </section>
-
-        <!-- SONUÇ EKRANI -->
-        <section class="mobile-screen" id="result-screen">
-            <div class="mobile-header">
-                <h2>🏆 SONUÇ</h2>
-                <p>Tebrikler!</p>
-            </div>
-            
-            <div class="mobile-content">
-                <div class="score-display">
-                    <div class="score-circle">
-                        <span class="score-number" id="final-score">85</span>
-                        <span class="score-text">PUAN</span>
-                    </div>
-                </div>
-                
-                <div class="score-breakdown">
-                    <div class="score-item">
-                        <span>Parola Gücü:</span>
-                        <span id="password-score">30/30</span>
-                    </div>
-                    <div class="score-item">
-                        <span>Oltalama:</span>
-                        <span id="phishing-score">25/30</span>
-                    </div>
-                    <div class="score-item">
-                        <span>Gizlilik:</span>
-                        <span id="privacy-score">30/40</span>
-                    </div>
-                </div>
-                
-                <button onclick="showScoreboard()" class="mobile-btn primary">SKOR TABLOSU</button>
-                <button onclick="restartGame()" class="mobile-btn secondary">YENİDEN OYNA</button>
-            </div>
-        </section>
-
-        <!-- SKOR TABLOSU -->
-        <section class="mobile-screen" id="scoreboard-screen">
-            <div class="mobile-header">
-                <h2>🏆 SKOR TABLOSU</h2>
-                <p>En iyi oyuncular</p>
-            </div>
-            
-            <div class="mobile-content">
-                <div class="scoreboard-list" id="mobile-scoreboard">
-                    <!-- Firebase'den gelecek -->
-                </div>
-                
-                <button onclick="restartGame()" class="mobile-btn primary">YENİ OYUN</button>
-            </div>
-        </section>
-    </div>
-
-    <!-- Firebase Scripts -->
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database-compat.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>
-    <script src="firebase-config.js"></script>
-    <script>
-        // MOBİL OYUN LOGİĞİ
-        let currentScreen = 'start-screen';
-        let playerName = '';
-        let gameScore = {
-            password: 0,
-            phishing: 0,
-            privacy: 0,
-            total: 0
-        };
-
-        // Firebase bağlantısı
+        // Firebase database referansı
         const database = firebase.database();
 
-        function startMobileGame() {
-            playerName = document.getElementById('mobile-player-name').value.trim();
-            if (!playerName) {
-                alert('Lütfen isminizi girin!');
+        // Tüm PC oyun fonksiyonlarını kopyala
+        function showPanel(panelId) {
+            // Tüm panelleri gizle
+            document.querySelectorAll('.center-panel').forEach(panel => {
+                panel.style.display = 'none';
+            });
+            
+            // İstenen paneli göster
+            document.getElementById(panelId).style.display = 'flex';
+            currentPanel = panelId;
+            
+            console.log(`📱 Panel değişti: ${panelId}`);
+        }
+
+        function startGame() {
+            const username = document.getElementById('username-input').value.trim();
+            if (!username) {
+                alert('Lütfen kod adınızı girin!');
                 return;
             }
-            nextScreen('password-screen');
-        }
-
-        function nextScreen(screenId) {
-            // Mevcut ekranı gizle
-            document.querySelector('.mobile-screen.active').classList.remove('active');
-            // Yeni ekranı göster
-            document.getElementById(screenId).classList.add('active');
-            currentScreen = screenId;
             
-            // Scroll to top
-            window.scrollTo(0, 0);
+            currentUsername = username;
+            gameStartTime = Date.now();
+            gameScore = 0;
+            
+            // Timer başlat
+            startTimer();
+            
+            // Parola paneline geç
+            showPanel('password-panel');
+            console.log(`🎮 Mobil oyun başladı: ${username}`);
         }
 
+        function startTimer() {
+            gameTimer = setInterval(() => {
+                const elapsed = Date.now() - gameStartTime;
+                const minutes = Math.floor(elapsed / 60000);
+                const seconds = Math.floor((elapsed % 60000) / 1000);
+                const timeString = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                // Tüm timer elementlerini güncelle
+                const timers = ['timer', 'timer-share', 'timer-phishing'];
+                timers.forEach(timerId => {
+                    const element = document.getElementById(timerId);
+                    if (element) {
+                        element.textContent = `Süre: ${timeString}`;
+                    }
+                });
+            }, 1000);
+        }
+
+        function updateScore(points) {
+            gameScore += points;
+            
+            // Tüm skor elementlerini güncelle
+            const scores = ['score', 'score-share', 'score-phishing'];
+            scores.forEach(scoreId => {
+                const element = document.getElementById(scoreId);
+                if (element) {
+                    element.textContent = gameScore;
+                }
+            });
+            
+            console.log(`📱 Skor güncellendi: +${points} = ${gameScore}`);
+        }
+
+        // Parola kontrol fonksiyonu
         function checkPasswords() {
-            const pass1 = document.getElementById('mobile-password1').value;
-            const pass2 = document.getElementById('mobile-password2').value;
+            const pass1 = document.getElementById('password-input-1').value;
+            const pass2 = document.getElementById('password-input-2').value;
             
             if (!pass1 || !pass2) {
                 alert('Lütfen her iki parolayı da girin!');
@@ -236,107 +351,156 @@
             }
             
             if (pass1 !== pass2) {
-                alert('Parolalar eşleşmiyor!');
+                document.getElementById('password-match-message').textContent = 'Parolalar eşleşmiyor!';
                 return;
             }
             
             // Parola gücü hesapla
             const result = zxcvbn(pass1);
             const score = (result.score + 1) * 6; // 0-4 arası skoru 6-30 arası yap
-            gameScore.password = score;
+            passwordScore = score;
+            updateScore(score);
             
-            alert(`Parola gücü: ${score}/30 puan`);
-            updateStrengthDisplay(result.score);
+            // Sonucu göster
+            showPasswordResult(result, score);
         }
 
-        function updateStrengthDisplay(score) {
-            const colors = ['#ff4444', '#ff8800', '#ffaa00', '#88dd00', '#00dd44'];
-            const texts = ['Çok Zayıf', 'Zayıf', 'Orta', 'İyi', 'Mükemmel'];
+        function showPasswordResult(result, score) {
+            const resultDiv = document.getElementById('password-result');
+            const strengthLabel = document.getElementById('strength-label');
+            const crackTime = document.getElementById('crack-time');
+            const congratsMessage = document.getElementById('congrats-message');
+            const nextBtn = document.getElementById('next-task-btn');
             
-            document.querySelectorAll('.strength-bar').forEach(bar => {
-                bar.style.width = ((score + 1) * 20) + '%';
-                bar.style.backgroundColor = colors[score];
-            });
+            const strengthTexts = ['Çok Zayıf', 'Zayıf', 'Orta', 'İyi', 'Mükemmel'];
+            const strengthColors = ['#ff4444', '#ff8800', '#ffaa00', '#88dd00', '#00dd44'];
             
-            document.querySelectorAll('.strength-text').forEach(text => {
-                text.textContent = texts[score];
-                text.style.color = colors[score];
-            });
+            strengthLabel.textContent = `Parola Gücü: ${strengthTexts[result.score]}`;
+            strengthLabel.style.color = strengthColors[result.score];
+            crackTime.textContent = `Kırılma Süresi: ${result.crack_times_display.offline_slow_hashing_1e4_per_second}`;
+            congratsMessage.textContent = `Tebrikler! ${score} puan kazandınız.`;
+            
+            resultDiv.style.display = 'block';
+            nextBtn.style.display = 'block';
+            
+            // Next butonu event listener
+            nextBtn.onclick = () => showPanel('share-panel');
         }
 
-        function selectAnswer(answer) {
-            // Oltalama sorusu cevabı
-            if (answer === 'unsafe') {
-                gameScore.phishing = 30; // Doğru cevap
-                alert('Doğru! +30 puan');
-            } else {
-                gameScore.phishing = 10; // Yanlış cevap
-                alert('Yanlış! Bu e-posta sahte. +10 puan');
-            }
-            
-            // Visual feedback
-            document.querySelectorAll('.mobile-answer-btn').forEach(btn => {
-                btn.style.opacity = '0.5';
-            });
-            event.target.style.opacity = '1';
-            event.target.style.border = '3px solid #00ff00';
-        }
-
-        function shareAnswer(item, action) {
-            // Gizlilik puanlaması
+        // Paylaş/Sakla fonksiyonları
+        function handleShareChoice(element, action, type) {
             const correctAnswers = {
-                phone: 'hide',    // Telefon numarası saklanmalı
-                address: 'hide',  // Adres saklanmalı  
-                birthday: 'share' // Doğum tarihi paylaşılabilir
+                name: 'share',     // Adı paylaşabilir
+                phone: 'hide',     // Telefon numarası saklanmalı
+                address: 'hide',   // Adres saklanmalı
+                birthday: 'hide',  // Doğum tarihi saklanmalı
+                income: 'hide'     // Maaş saklanmalı
             };
             
-            if (correctAnswers[item] === action) {
-                gameScore.privacy += 13; // 40/3 ≈ 13 puan
-            } else {
-                gameScore.privacy += 5;  // Yanlış cevap için düşük puan
-            }
+            const isCorrect = correctAnswers[type] === action;
+            const points = isCorrect ? 8 : 2; // Doğru cevap 8, yanlış 2 puan
+            
+            shareScore += points;
+            updateScore(points);
             
             // Visual feedback
-            event.target.style.backgroundColor = action === 'share' ? '#4CAF50' : '#f44336';
-            event.target.style.color = 'white';
+            element.style.border = isCorrect ? '3px solid #00ff00' : '3px solid #ff8800';
             
-            // Diğer butonu deaktif et
-            const siblings = event.target.parentElement.querySelectorAll('.mobile-btn');
-            siblings.forEach(btn => {
-                if (btn !== event.target) {
+            // Diğer seçenekleri deaktif et
+            const questionItem = element.closest('.share-question-item');
+            questionItem.querySelectorAll('.share-btn').forEach(btn => {
+                if (btn !== element) {
                     btn.style.opacity = '0.3';
-                    btn.disabled = true;
+                    btn.style.pointerEvents = 'none';
                 }
             });
+            
+            // Tüm sorular cevaplanmış mı kontrol et
+            checkShareCompletion();
+        }
+
+        function checkShareCompletion() {
+            const answeredQuestions = document.querySelectorAll('.share-question-item .share-btn[style*="border"]').length;
+            if (answeredQuestions >= 5) {
+                document.getElementById('share-next-btn').style.display = 'block';
+                document.getElementById('share-next-btn').onclick = () => showPanel('phishing-panel');
+            }
+        }
+
+        // Phishing test fonksiyonları
+        function handlePhishingChoice(element, isSafe) {
+            if (element.dataset.clicked === 'true') return; // Zaten tıklanmışsa çık
+            
+            element.dataset.clicked = 'true';
+            
+            const points = isSafe ? 30 : -5; // Güvenli link 30 puan, sahte link -5 puan
+            phishingScore += points;
+            updateScore(points);
+            
+            // Visual feedback
+            element.style.border = isSafe ? '3px solid #00ff00' : '3px solid #ff4444';
+            element.style.transform = 'scale(0.95)';
+            
+            console.log(`🎣 Phishing seçimi: ${isSafe ? 'Güvenli' : 'Sahte'} (+${points} puan)`);
+            
+            // Oyunu bitir
+            setTimeout(() => {
+                finishGame();
+            }, 1500);
         }
 
         function finishGame() {
-            // Toplam skoru hesapla
-            gameScore.total = gameScore.password + gameScore.phishing + gameScore.privacy;
+            clearInterval(gameTimer);
             
-            // Sonuç ekranını güncelle
-            document.getElementById('final-score').textContent = gameScore.total;
-            document.getElementById('password-score').textContent = `${gameScore.password}/30`;
-            document.getElementById('phishing-score').textContent = `${gameScore.phishing}/30`;
-            document.getElementById('privacy-score').textContent = `${gameScore.privacy}/40`;
+            const totalTime = Date.now() - gameStartTime;
+            const minutes = Math.floor(totalTime / 60000);
+            const seconds = Math.floor((totalTime % 60000) / 1000);
+            
+            // Sonuç ekranını hazırla
+            showPanel('result-panel');
+            
+            const resultText = document.getElementById('result-text');
+            const resultsDisplay = document.getElementById('results-display');
+            
+            resultText.textContent = `${currentUsername}, oyunu ${minutes}:${seconds.toString().padStart(2, '0')} sürede tamamladınız!`;
+            
+            resultsDisplay.innerHTML = `
+                <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; margin: 20px 0;">
+                    <h3 style="color: #ffaa00; margin-bottom: 15px;">📊 SONUÇLARINIZ</h3>
+                    <div style="display: flex; justify-content: space-between; margin: 10px 0;">
+                        <span>🔐 Parola Gücü:</span>
+                        <span style="color: #00ff00;">${passwordScore} puan</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin: 10px 0;">
+                        <span>🤐 Paylaş/Sakla:</span>
+                        <span style="color: #00ff00;">${shareScore} puan</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin: 10px 0;">
+                        <span>🎣 Oltalama Testi:</span>
+                        <span style="color: #00ff00;">${phishingScore} puan</span>
+                    </div>
+                    <hr style="margin: 15px 0; border-color: rgba(255,255,255,0.3);">
+                    <div style="display: flex; justify-content: space-between; margin: 10px 0; font-size: 1.2em; font-weight: bold;">
+                        <span>🏆 TOPLAM:</span>
+                        <span style="color: #ffd700;">${gameScore} puan</span>
+                    </div>
+                </div>
+            `;
             
             // Firebase'e kaydet
             saveScoreToFirebase();
-            
-            // Sonuç ekranına geç
-            nextScreen('result-screen');
         }
 
         function saveScoreToFirebase() {
             const scoreData = {
-                name: playerName,
-                score: gameScore.total,
+                name: currentUsername,
+                score: gameScore,
                 device: 'Mobile',
                 date: new Date().toISOString(),
                 breakdown: {
-                    password: gameScore.password,
-                    phishing: gameScore.phishing,
-                    privacy: gameScore.privacy
+                    password: passwordScore,
+                    share: shareScore,
+                    phishing: phishingScore
                 }
             };
             
@@ -350,11 +514,6 @@
         }
 
         function showScoreboard() {
-            loadScoreboard();
-            nextScreen('scoreboard-screen');
-        }
-
-        function loadScoreboard() {
             database.ref('scores').orderByChild('score').limitToLast(10).once('value')
                 .then((snapshot) => {
                     const scores = [];
@@ -371,61 +530,128 @@
         }
 
         function displayScoreboard(scores) {
-            const container = document.getElementById('mobile-scoreboard');
-            container.innerHTML = '';
+            const content = document.getElementById('scoreboard-content');
+            content.innerHTML = '';
             
             scores.forEach((score, index) => {
                 const item = document.createElement('div');
-                item.className = 'scoreboard-item';
+                item.style.cssText = 'display: flex; justify-content: space-between; align-items: center; padding: 10px; margin: 5px 0; background: rgba(255,255,255,0.1); border-radius: 8px;';
                 item.innerHTML = `
-                    <span class="rank">${index + 1}</span>
-                    <span class="name">${score.name}</span>
-                    <span class="device">${score.device === 'Mobile' ? '📱' : '💻'}</span>
-                    <span class="score">${score.score}</span>
+                    <span style="font-weight: bold; color: #ffd700;">${index + 1}.</span>
+                    <span style="flex: 1; margin-left: 10px; color: white;">${score.name}</span>
+                    <span style="margin: 0 10px;">${score.device === 'Mobile' ? '📱' : '💻'}</span>
+                    <span style="font-weight: bold; color: #00ff00;">${score.score}</span>
                 `;
-                container.appendChild(item);
-            });
-        }
-
-        function restartGame() {
-            // Oyunu sıfırla
-            gameScore = { password: 0, phishing: 0, privacy: 0, total: 0 };
-            playerName = '';
-            
-            // Form alanlarını temizle
-            document.getElementById('mobile-player-name').value = '';
-            document.getElementById('mobile-password1').value = '';
-            document.getElementById('mobile-password2').value = '';
-            
-            // Butonları sıfırla
-            document.querySelectorAll('.mobile-btn').forEach(btn => {
-                btn.style.opacity = '1';
-                btn.style.border = '';
-                btn.style.backgroundColor = '';
-                btn.disabled = false;
+                content.appendChild(item);
             });
             
-            // İlk ekrana dön
-            nextScreen('start-screen');
+            document.getElementById('scoreboard-modal').style.display = 'block';
         }
 
-        // Sayfa yüklendiğinde
-        window.addEventListener('load', function() {
-            console.log('📱 Mobil oyun yüklendi');
+        function closeScoreboard() {
+            document.getElementById('scoreboard-modal').style.display = 'none';
+        }
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Loading screen gizle
+            setTimeout(() => {
+                document.getElementById('loading-screen').style.display = 'none';
+            }, 2000);
             
-            // Touch feedback
+            // Start button
+            document.getElementById('start-btn').onclick = () => showPanel('username-panel');
+            
+            // Play button
+            document.getElementById('play-btn').onclick = startGame;
+            
+            // Enter key support
+            document.getElementById('username-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') startGame();
+            });
+            
+            // Parola input event listeners
+            const passwordInputs = ['password-input-1', 'password-input-2'];
+            passwordInputs.forEach(inputId => {
+                document.getElementById(inputId).addEventListener('input', function() {
+                    const pass1 = document.getElementById('password-input-1').value;
+                    const pass2 = document.getElementById('password-input-2').value;
+                    const checkBtn = document.getElementById('check-password-btn');
+                    const message = document.getElementById('password-match-message');
+                    
+                    if (pass1 && pass2) {
+                        if (pass1 === pass2) {
+                            checkBtn.style.opacity = '1';
+                            checkBtn.style.pointerEvents = 'auto';
+                            checkBtn.onclick = checkPasswords;
+                            message.textContent = '✅ Parolalar eşleşiyor';
+                            message.style.color = '#00ff00';
+                        } else {
+                            checkBtn.style.opacity = '0.5';
+                            checkBtn.style.pointerEvents = 'none';
+                            message.textContent = '❌ Parolalar eşleşmiyor';
+                            message.style.color = '#ff4444';
+                        }
+                    } else {
+                        checkBtn.style.opacity = '0.5';
+                        checkBtn.style.pointerEvents = 'none';
+                        message.textContent = '';
+                    }
+                });
+            });
+            
+            // Share button event listeners
+            document.querySelectorAll('.share-btn').forEach(btn => {
+                btn.onclick = function() {
+                    handleShareChoice(this, this.dataset.action, this.dataset.type);
+                };
+            });
+            
+            // Phishing button event listeners
+            document.querySelectorAll('.phishing-button').forEach(btn => {
+                btn.onclick = function() {
+                    handlePhishingChoice(this, this.dataset.safe === 'true');
+                };
+            });
+            
+            // Scoreboard button
+            document.getElementById('show-scoreboard-btn').onclick = showScoreboard;
+            
+            // Touch feedback for mobile
             document.addEventListener('touchstart', function(e) {
-                if (e.target.classList.contains('mobile-btn')) {
+                if (e.target.tagName === 'IMG' && e.target.classList.contains('main-btn-svg')) {
                     e.target.style.transform = 'scale(0.95)';
                 }
             });
             
             document.addEventListener('touchend', function(e) {
-                if (e.target.classList.contains('mobile-btn')) {
+                if (e.target.tagName === 'IMG' && e.target.classList.contains('main-btn-svg')) {
                     e.target.style.transform = 'scale(1)';
                 }
             });
+            
+            console.log('📱 Mobil oyun hazır! PC ile aynı yapı, mobil optimize CSS');
         });
-    </script>
+
+        // Mobile debug function
+        function mobileDebugFix() {
+            console.log('🔧 Mobil debug başlatıldı...');
+            console.log(`📱 Ekran boyutu: ${window.innerWidth}x${window.innerHeight}`);
+            console.log(`📱 Device pixel ratio: ${window.devicePixelRatio}`);
+            console.log(`📱 User agent: ${navigator.userAgent}`);
+            
+            // Panel durumlarını kontrol et
+            const panels = ['main-panel', 'username-panel', 'password-panel', 'share-panel', 'phishing-panel', 'result-panel'];
+            panels.forEach(panelId => {
+                const panel = document.getElementById(panelId);
+                if (panel) {
+                    const isVisible = panel.style.display !== 'none';
+                    console.log(`📋 ${panelId}: ${isVisible ? 'Görünür' : 'Gizli'}`);
+                }
+            });
+            
+            alert('Mobil debug bilgileri console\'da! (F12)');
+        }
+      </script>
 </body>
 </html> 

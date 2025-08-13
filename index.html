@@ -61,7 +61,7 @@
         </div>
       
               <!-- Ana oyun içeriği -->
-        <div class="background">
+      <div class="background">
           <img src="assets/Asset 4.svg" alt="Arka Plan" class="background-img" loading="lazy">
           <img src="assets/Asset 5.svg" alt="Siber Güvenlik Başkanlığı" class="logo" loading="lazy">
         <!-- Ana Panel -->
@@ -2595,16 +2595,16 @@
             const isAlreadyMobile = window.location.pathname.includes('mobile.html');
             
             if (isMobile && !isAlreadyMobile) {
-                console.log('📱 Mobil cihaz tespit edildi - mobile.html\'e yönlendiriliyor...');
+                console.log('📱 Mobil cihaz tespit edildi - PC ile AYNI tasarım mobil versiyona yönlendiriliyor...');
                 
                 // 3 saniye uyarı göster, sonra yönlendir
                 const warning = document.getElementById('landscape-warning');
                 if (warning) {
                     warning.innerHTML = `
                         <h2>📱 MOBİL CİHAZ TESPİT EDİLDİ!</h2>
-                        <p><strong>Size özel mobil versiyona yönlendiriliyorsunuz...</strong></p>
-                        <p>Daha iyi deneyim için optimize edildi!</p>
-                        <div class="rotate-icon">📱✨</div>
+                        <p><strong>PC ile AYNI tasarım, mobil optimize!</strong></p>
+                        <p>Aynı assetler, aynı renkler, aynı düzen!</p>
+                        <div class="rotate-icon">🎨📱</div>
                         <p><small>3 saniye içinde otomatik yönlendirme...</small></p>
                     `;
                     warning.style.display = 'flex';
@@ -2668,7 +2668,7 @@
             });
         }
     });
-
+    
     // Yükleme ekranını gizle
     window.addEventListener('load', function() {
         setTimeout(function() {
@@ -2868,8 +2868,8 @@
                  }
              });
              
-                         console.log(`✅ ${buttons.length} phishing butonu hazırlandı`);
-            
+             console.log(`✅ ${buttons.length} phishing butonu hazırlandı`);
+             
             // Font boyutlarını ayarla (mobil uyumluluk)
             setTimeout(() => {
                 if (typeof adjustPhishingButtonFonts === 'function') {
@@ -2877,9 +2877,9 @@
                 }
             }, 50);
             
-            // İlk soruyu göster
-            currentPhishingQuestion = 0;
-            showNextPhishingQuestion();
+             // İlk soruyu göster
+             currentPhishingQuestion = 0;
+             showNextPhishingQuestion();
          };
     });
     </script>
