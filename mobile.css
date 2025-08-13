@@ -729,3 +729,36 @@ body, html {
     from { transform: translate(-50%, -50%) scale(0.9); opacity: 0; }
     to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
 } 
+
+/* MOBILE LAYOUT FIX OVERRIDES (iOS safe-area + 100dvh) */
+@media (max-width: 480px) {
+    .background {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100dvh;
+        min-height: 100dvh;
+        padding: 0 16px;
+    }
+    .center-panel {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        width: 100%;
+    }
+    .logo {
+        position: absolute;
+        top: calc(env(safe-area-inset-top, 0px) + 12px);
+        left: 12px;
+        width: clamp(64px, 18vw, 96px);
+        height: auto;
+    }
+}
+
+@media (max-width: 360px) {
+    .logo {
+        width: clamp(56px, 20vw, 84px);
+    }
+} 
