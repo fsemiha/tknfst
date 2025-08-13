@@ -16,7 +16,7 @@
     <link rel="preload" href="fonts/Gilmer Light.otf" as="font" type="font/otf" crossorigin>
     <link rel="preload" href="fonts/Gilmer Bold.otf" as="font" type="font/otf" crossorigin>
     <link rel="preload" href="fonts/conthrax-sb.otf" as="font" type="font/otf" crossorigin>
-    <link rel="stylesheet" href="mobile.css">
+    <link rel="stylesheet" href="mobile.css?v=1.1">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js" defer></script>
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js" defer></script>
@@ -40,12 +40,23 @@
           </div>
       </div>
       
+      <script>
+        // Yükleme ekranını en geç 2500ms içinde kaldır (erken garanti)
+        setTimeout(function(){
+          var ls = document.getElementById('loading-screen');
+          if (ls) { ls.style.display = 'none'; }
+          var mp = document.getElementById('main-panel');
+          if (mp && mp.style.display === 'none') { mp.style.display = 'flex'; }
+          console.log('⏱ Yükleme ekranı erken kapatıldı (guard).');
+        }, 2500);
+      </script>
+      
       <!-- Ana oyun içeriği -->
       <div class="background">
           <img src="assets/Asset 4.svg" alt="Arka Plan" class="background-img" loading="lazy">
           <img src="assets/Asset 5.svg" alt="Siber Güvenlik Başkanlığı" class="logo" loading="lazy">
         <!-- Ana Panel -->
-        <div class="center-panel" id="main-panel" style="display: none;">
+        <div class="center-panel" id="main-panel">
             <div class="main-title-panel">
                 <img src="assets/Asset 13.svg" alt="Siber Macera" class="main-title-svg" loading="lazy">
                 <div class="inside-panel">
@@ -272,7 +283,7 @@
         let currentTask = '';
 
         // Firebase database referansı
-        const database = firebase.database();
+        let database;
 
         // Tüm PC oyun fonksiyonlarını kopyala
         function showPanel(panelId) {
@@ -554,6 +565,17 @@
 
         // Event Listeners
         document.addEventListener('DOMContentLoaded', function() {
+            try {
+                if (window.FIREBASE_CONFIG && firebase?.apps?.length === 0) {
+                    firebase.initializeApp(window.FIREBASE_CONFIG);
+                }
+                if (firebase) {
+                    database = firebase.database();
+                    console.log('✅ Firebase hazır (mobile)');
+                }
+            } catch (e) {
+                console.error('❌ Firebase init hatası (mobile):', e);
+            }
             // Loading screen gizle ve ana paneli göster
             setTimeout(() => {
                 const loadingScreen = document.getElementById('loading-screen');
@@ -628,6 +650,11 @@
             
             // Scoreboard button
             document.getElementById('show-scoreboard-btn').onclick = showScoreboard;
+            
+            // Firebase var mı kontrol
+            if (!database) {
+                console.warn('⚠️ Firebase database henüz hazır değil. Skor kaydı geçici olarak devre dışı.');
+            }
             
             // Touch feedback for mobile
             document.addEventListener('touchstart', function(e) {
