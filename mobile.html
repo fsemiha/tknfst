@@ -45,7 +45,7 @@
           <img src="assets/Asset 4.svg" alt="Arka Plan" class="background-img" loading="lazy">
           <img src="assets/Asset 5.svg" alt="Siber Güvenlik Başkanlığı" class="logo" loading="lazy">
         <!-- Ana Panel -->
-        <div class="center-panel" id="main-panel">
+        <div class="center-panel" id="main-panel" style="display: none;">
             <div class="main-title-panel">
                 <img src="assets/Asset 13.svg" alt="Siber Macera" class="main-title-svg" loading="lazy">
                 <div class="inside-panel">
@@ -554,9 +554,21 @@
 
         // Event Listeners
         document.addEventListener('DOMContentLoaded', function() {
-            // Loading screen gizle
+            // Loading screen gizle ve ana paneli göster
             setTimeout(() => {
-                document.getElementById('loading-screen').style.display = 'none';
+                const loadingScreen = document.getElementById('loading-screen');
+                const mainPanel = document.getElementById('main-panel');
+                
+                if (loadingScreen) {
+                    loadingScreen.style.display = 'none';
+                }
+                
+                if (mainPanel) {
+                    mainPanel.style.display = 'flex';
+                    console.log('🎮 Ana panel gösterildi!');
+                } else {
+                    console.error('❌ Ana panel bulunamadı!');
+                }
             }, 2000);
             
             // Start button
@@ -631,6 +643,22 @@
             });
             
             console.log('📱 Mobil oyun hazır! PC ile aynı yapı, mobil optimize CSS');
+            
+            // Ek güvenlik: 5 saniye sonra loading screen'ı zorla gizle
+            setTimeout(() => {
+                const loadingScreen = document.getElementById('loading-screen');
+                const mainPanel = document.getElementById('main-panel');
+                
+                if (loadingScreen && loadingScreen.style.display !== 'none') {
+                    loadingScreen.style.display = 'none';
+                    console.log('⏰ 5 saniye sonra loading screen zorla gizlendi!');
+                }
+                
+                if (mainPanel && mainPanel.style.display === 'none') {
+                    mainPanel.style.display = 'flex';
+                    console.log('⏰ 5 saniye sonra ana panel zorla gösterildi!');
+                }
+            }, 5000);
         });
 
         // Mobile debug function
@@ -639,6 +667,12 @@
             console.log(`📱 Ekran boyutu: ${window.innerWidth}x${window.innerHeight}`);
             console.log(`📱 Device pixel ratio: ${window.devicePixelRatio}`);
             console.log(`📱 User agent: ${navigator.userAgent}`);
+            
+            // Loading screen kontrolü
+            const loadingScreen = document.getElementById('loading-screen');
+            if (loadingScreen) {
+                console.log(`📱 Loading screen: ${loadingScreen.style.display}`);
+            }
             
             // Panel durumlarını kontrol et
             const panels = ['main-panel', 'username-panel', 'password-panel', 'share-panel', 'phishing-panel', 'result-panel'];
@@ -649,6 +683,19 @@
                     console.log(`📋 ${panelId}: ${isVisible ? 'Görünür' : 'Gizli'}`);
                 }
             });
+            
+            // Loading screen'ı zorla gizle
+            if (loadingScreen && loadingScreen.style.display !== 'none') {
+                loadingScreen.style.display = 'none';
+                console.log('🔧 Loading screen zorla gizlendi!');
+            }
+            
+            // Ana paneli zorla göster
+            const mainPanel = document.getElementById('main-panel');
+            if (mainPanel && mainPanel.style.display === 'none') {
+                mainPanel.style.display = 'flex';
+                console.log('🔧 Ana panel zorla gösterildi!');
+            }
             
             alert('Mobil debug bilgileri console\'da! (F12)');
         }
